@@ -20,7 +20,7 @@ class AllBrandsViewBody extends StatelessWidget {
       width: double.infinity,
       decoration: buildBoxDecorationColor(),
       child: Padding(
-        padding: const EdgeInsets.only(top: 35.0, left: 10,right: 2),
+        padding: const EdgeInsets.only(top: 35.0, left: 8,right: 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -41,8 +41,8 @@ class AllBrandsViewBody extends StatelessWidget {
                   itemCount: brands.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 0,
-                      mainAxisSpacing: 10),
+                      crossAxisSpacing: 3,
+                      mainAxisSpacing: 20),
                   itemBuilder: (context, index) => CustomBrandItem(
                         index: index,
                         brands: brands,
