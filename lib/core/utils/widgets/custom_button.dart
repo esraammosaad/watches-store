@@ -5,7 +5,7 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.text,
-    required this.onTap
+    required this.onTap,
   });
 
   final String text;
@@ -16,11 +16,11 @@ class CustomButton extends StatelessWidget {
     return MaterialButton(
       height: 50,
       minWidth: 300,
-      color:  const Color(0xff6B6B6B).withOpacity(0.1),
+      color: const Color(0xff6B6B6B).withOpacity(0.1),
       shape: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(40) ,
-            borderSide: BorderSide(color:const Color(0xff6B6B6B).withOpacity(0.1) )
-      ),
+          borderRadius: BorderRadius.circular(40),
+          borderSide:
+              BorderSide(color: const Color(0xff6B6B6B).withOpacity(0.1))),
       onPressed: onTap,
       child: Center(
         child: Text(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/watches_item.dart';
-
+import 'package:watsh_store/core/utils/widgets/custom_title.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/brands_model.dart';
+import '../item_details_view.dart';
 
 class BrandItemsViewBody extends StatelessWidget {
   BrandItemsViewBody(
@@ -21,36 +22,26 @@ class BrandItemsViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      size: 32,
-                      color: Colors.black,
-                    )),
-                const SizedBox(
-                  width: 30,
-                ),
-                Text(
-                  brandName,
-                  style: Styles.fontSize36.copyWith(color: Colors.black),
-                ),
-              ],
-            ),
-
+            CustomTitle(text: brandName),
             Expanded(
               child: GridView.builder(
-                  itemCount: brandItems.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 0,
-                      mainAxisSpacing: 0),
-                  itemBuilder: (context, index) =>
-                      WatchesItem(index: index, items: brandItems)),
+                itemCount: brandItems.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, crossAxisSpacing: 0, mainAxisSpacing: 0),
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ItemDetailsView(
+                          item: brandItems[index],
+                        ),
+                      ),
+                    );
+                  },
+                  child: WatchesItem(index: index, items: brandItems),
+                ),
+              ),
             )
           ],
         ),

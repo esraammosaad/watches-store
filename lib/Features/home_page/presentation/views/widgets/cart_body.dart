@@ -1,0 +1,152 @@
+import 'package:flutter/material.dart';
+import '../../../../../core/utils/styles.dart';
+import '../../../../../core/utils/widgets/custom_cart_button.dart';
+import '../../../../../core/utils/widgets/custom_title.dart';
+import '../checkout_view.dart';
+import 'custom_cart_body.dart';
+
+class CartBody extends StatelessWidget {
+  const CartBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: buildBoxDecorationColor(),
+      child: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(
+              top: 35.0,
+              left: 8,
+              right: 0,
+            ),
+            child: CustomTitle(text: "My Cart"),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) => const CustomCartBody(),
+              itemCount: 2,
+            ),
+          ),
+          Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(32),
+                topLeft: Radius.circular(32),
+              ),
+              color: Colors.black,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 18),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Item total",
+                              style: Styles.fontSize20.copyWith(
+                                color: Colors.white.withOpacity(0.7),
+                              ),
+                            ),
+                            Text(
+                              "1,500\$",
+                              style: Styles.fontSize20.copyWith(
+                                color: Colors.white.withOpacity(0.7),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Delivery Charge",
+                                style: Styles.fontSize20.copyWith(
+                                  color: Colors.white.withOpacity(0.7),
+                                ),
+                              ),
+                              Text(
+                                "50\$",
+                                style: Styles.fontSize20.copyWith(
+                                  color: Colors.white.withOpacity(0.7),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Tax",
+                                style: Styles.fontSize20.copyWith(
+                                  color: Colors.white.withOpacity(0.7),
+                                ),
+                              ),
+                              Text(
+                                "40\$",
+                                style: Styles.fontSize20.copyWith(
+                                  color: Colors.white.withOpacity(0.7),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "total",
+                          style:
+                              Styles.fontSize24.copyWith(color: Colors.white),
+                        ),
+                        Text(
+                          "1,590\$",
+                          style:
+                              Styles.fontSize24.copyWith(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  CustomCartButton(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CheckoutView(),
+                        ),
+                      );
+                    },
+                    text: "Checkout",
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

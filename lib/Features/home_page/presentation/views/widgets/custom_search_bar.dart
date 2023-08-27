@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/widgets/custom_text_field.dart';
+
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     super.key,
@@ -16,8 +16,13 @@ class CustomSearchBar extends StatelessWidget {
             child: CustomTextField(),
           ),
         ),
-        const SizedBox(width: 10,),
-        Image.asset('assets/icons/setting.png',height: 36,)
+        const SizedBox(
+          width: 10,
+        ),
+        Image.asset(
+          'assets/icons/setting.png',
+          height: 36,
+        )
       ],
     );
   }

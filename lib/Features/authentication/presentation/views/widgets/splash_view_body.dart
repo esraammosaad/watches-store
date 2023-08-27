@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watsh_store/Features/authentication/presentation/views/widgets/sliding_image.dart';
-
 import '../sign_in_view.dart';
-
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({Key? key}) : super(key: key);
@@ -56,7 +54,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>  SignInView(),
+          builder: (context) => const SignInView(),
         ),
       ),
     );

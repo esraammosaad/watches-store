@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:watsh_store/core/utils/widgets/custom_title.dart';
 import '../../../../../core/utils/styles.dart';
 import 'custom_card.dart';
 
@@ -14,21 +14,20 @@ class ProfileViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 32.0,top: 16,bottom: 16),
-              child: Text(
-                'Profile',
-                style: Styles.fontSize36.copyWith(color: Colors.black),
-              ),
+            const Padding(
+              padding: EdgeInsets.only(left: 32.0, top: 40, bottom: 16),
+              child: CustomTitle(text: 'Profile'),
             ),
-
             Card(
               elevation: 15,
               shadowColor: const Color(0xFF929292),
               color: const Color(0xFF929292),
               shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(32),
-                  borderSide: const BorderSide(color: Color(0xFF929292))),
+                borderRadius: BorderRadius.circular(32),
+                borderSide: const BorderSide(
+                  color: Color(0xFF929292),
+                ),
+              ),
               child: ListTile(
                 contentPadding: const EdgeInsets.all(16),
                 title: Text(
@@ -42,8 +41,9 @@ class ProfileViewBody extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Text(
                         'Rebprt22@gamil.com',
-                        style: Styles.fontSize18
-                            .copyWith(color: const Color(0x80000000)),
+                        style: Styles.fontSize18.copyWith(
+                          color: const Color(0x80000000),
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -57,29 +57,33 @@ class ProfileViewBody extends StatelessWidget {
                         color: const Color(0xB2F51010),
                       ),
                       child: Center(
-                          child: Text(
-                        "Edit",
-                        style: Styles.fontSize20.copyWith(color: Colors.black),
-                      )),
+                        child: Text(
+                          "Edit",
+                          style:
+                              Styles.fontSize20.copyWith(color: Colors.black),
+                        ),
+                      ),
                     ),
                   ],
                 ),
                 leading: Image.asset('assets/icons/photo.png'),
               ),
             ),
-            const SizedBox(height: 61,),
-            CustomCard(image: 'assets/icons/payment.png', title: 'Payment Method'),
+            const SizedBox(
+              height: 61,
+            ),
+            CustomCard(
+                image: 'assets/icons/payment.png', title: 'Payment Method'),
             CustomCard(image: 'assets/icons/feedback.png', title: 'Feedback'),
             CustomCard(image: 'assets/icons/help.png', title: 'Help'),
             CustomCard(image: 'assets/icons/info.png', title: 'privacy Policy'),
             CustomCard(image: 'assets/icons/logout.png', title: 'Log Out'),
-
-
-
+            const SizedBox(
+              height: 61,
+            ),
           ],
         ),
       ),
     );
   }
 }
-

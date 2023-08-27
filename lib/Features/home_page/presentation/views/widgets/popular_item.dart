@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../../core/utils/styles.dart';
+
 class PopularItem extends StatelessWidget {
   const PopularItem({Key? key}) : super(key: key);
 
@@ -14,11 +14,12 @@ class PopularItem extends StatelessWidget {
         width: 430,
         height: 173,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(17),
-            border: Border.all(
-              color: Colors.black,
-              width: 1,
-            )),
+          borderRadius: BorderRadius.circular(17),
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -49,7 +50,9 @@ class PopularItem extends StatelessWidget {
                       ),
                       maxLines: 3,
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     RatingBar.builder(
                       initialRating: 4,
                       minRating: 1,
@@ -58,32 +61,31 @@ class PopularItem extends StatelessWidget {
                       itemCount: 5,
                       itemSize: 20,
                       unratedColor: const Color(0x1B1B1BB2),
-
-
-
-                      itemPadding:
-                      const EdgeInsets.only(right: 2.0),
-                      itemBuilder: (context, _) =>  const FaIcon(FontAwesomeIcons.solidStar,color: Color(0xffFFD233) ),
+                      itemPadding: const EdgeInsets.only(right: 2.0),
+                      itemBuilder: (context, _) => const FaIcon(
+                          FontAwesomeIcons.solidStar,
+                          color: Color(0xffFFD233)),
                       onRatingUpdate: (rating) {
-                        print(rating);
+                        //print(rating);
                       },
                     ),
-                    const SizedBox(height: 17,),
-
+                    const SizedBox(
+                      height: 17,
+                    ),
                     Container(
-                      padding: const EdgeInsets.only(left: 10,top: 8,right: 8),
+                      padding:
+                          const EdgeInsets.only(left: 10, top: 8, right: 8),
                       height: 44,
                       width: 102,
                       decoration: BoxDecoration(
-
                         borderRadius: BorderRadius.circular(18),
-                        border: Border.all(color:Colors.black),
-
-
+                        border: Border.all(color: Colors.black),
                       ),
-                      child: Text(r"392.99$",style: Styles.fontSize20.copyWith(color: Colors.black),),
+                      child: Text(
+                        r"392.99$",
+                        style: Styles.fontSize20.copyWith(color: Colors.black),
+                      ),
                     ),
-
                   ],
                 ),
               ),

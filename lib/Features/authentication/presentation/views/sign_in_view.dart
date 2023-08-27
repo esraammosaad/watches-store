@@ -4,10 +4,9 @@ import 'package:watsh_store/Features/authentication/presentation/views/widgets/s
 class SignInView extends StatelessWidget {
   const SignInView({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: SignInViewBody(),
     );
   }

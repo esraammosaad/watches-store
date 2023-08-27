@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/brands_model.dart';
 import 'custom_price_container.dart';
+
 class CustomWatchCard extends StatelessWidget {
   CustomWatchCard({Key? key, required this.index, required this.items})
       : super(key: key);
@@ -14,12 +14,10 @@ class CustomWatchCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Card(
-
         shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
         color: Colors.transparent,
         elevation: 0,
         child: GridTile(
-
           header: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,8 +25,7 @@ class CustomWatchCard extends StatelessWidget {
               CustomPriceContainer(items: items, index: index),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0, right: 5),
-                child:
-                Image.asset('assets/icons/favorite.png', height: 27),
+                child: Image.asset('assets/icons/favorite.png', height: 27),
               )
             ],
           ),
@@ -56,7 +53,6 @@ class CustomWatchCard extends StatelessWidget {
                 height: 100,
                 width: 80,
               ),
-
             ],
           ),
         ),

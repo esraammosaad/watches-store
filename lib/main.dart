@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'Features/authentication/presentation/views/splash_view.dart';
 
 void main() {
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Poppins',
         brightness: Brightness.dark,

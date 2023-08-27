@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
 import '../../../../../core/utils/widgets/custom_text_form_field.dart';
@@ -31,10 +30,9 @@ class SignInViewBody extends StatelessWidget {
                       imgPath: "assets/images/black-male-user-symbol.png",
                       text: "Username",
                       obscureText: false,
+                      textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.text,
-                      onChanged: (value) {
-
-                      },
+                      onChanged: (value) {},
                       controller: emailController,
                     ),
                     const SizedBox(
@@ -44,6 +42,7 @@ class SignInViewBody extends StatelessWidget {
                         controller: passwordController,
                         imgPath: "assets/images/key.png",
                         text: "Password",
+                        textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: true,
                         onChanged: (value) {}),
@@ -64,9 +63,11 @@ class SignInViewBody extends StatelessWidget {
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>  HomePageView()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePageView(),
+                            ),
+                          );
                         }
                       },
                     )

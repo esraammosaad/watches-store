@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:watsh_store/Features/home_page/presentation/views/item_details_view.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/custom_watch_card.dart';
-import 'package:watsh_store/Features/home_page/presentation/views/widgets/watches_item.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/brands_model.dart';
 import '../all_brands_view.dart';
@@ -20,36 +20,58 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
   PageController controller = PageController();
   List<ProductsModel> brands = [
     ProductsModel(
-        image: 'assets/images/omega.png', productBrand: 'Omega', id: 0),
-    ProductsModel(image: 'assets/images/tag.png', productBrand: 'TAG', id: 1),
+      image: 'assets/images/omega.png',
+      productBrand: 'Omega',
+      id: 0,
+    ),
     ProductsModel(
-        image: 'assets/images/jaeger.png', productBrand: 'Jaeger', id: 2),
+      image: 'assets/images/tag.png',
+      productBrand: 'TAG',
+      id: 1,
+    ),
+    ProductsModel(
+      image: 'assets/images/jaeger.png',
+      productBrand: 'Jaeger',
+      id: 2,
+    ),
   ];
   List<ProductsModel> productItems = [
     ProductsModel(
-        image: 'assets/images/omega.png',
-        productName: 'Omega',
-        price: 500,
-        id: 0,
-        productBrand: 'Omega'),
+      image: 'assets/images/omega.png',
+      description:
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Omega',
+      price: 500,
+      id: 0,
+      productBrand: 'Omega',
+    ),
     ProductsModel(
-        image: 'assets/images/piaget.png',
-        productName: 'Piaget',
-        price: 500,
-        id: 1,
-        productBrand: 'Jaeger'),
+      image: 'assets/images/piaget.png',
+      description:
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Piaget',
+      price: 500,
+      id: 1,
+      productBrand: 'Jaeger',
+    ),
     ProductsModel(
-        image: 'assets/images/meister.png',
-        productName: 'meister',
-        price: 500,
-        id: 2,
-        productBrand: 'Omega'),
+      image: 'assets/images/meister.png',
+      description:
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'meister',
+      price: 500,
+      id: 2,
+      productBrand: 'Omega',
+    ),
     ProductsModel(
-        image: 'assets/images/piaget.png',
-        productName: 'Piaget',
-        price: 500,
-        id: 3,
-        productBrand: 'TAG'),
+      image: 'assets/images/piaget.png',
+      description:
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Piaget',
+      price: 500,
+      id: 3,
+      productBrand: 'TAG',
+    ),
   ];
   String? brandName;
 
@@ -75,12 +97,14 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                   categoryName: 'Brands',
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AllBrandsView(
-                                  brands: brands,
-                                  productItems: productItems,
-                                )));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AllBrandsView(
+                          brands: brands,
+                          productItems: productItems,
+                        ),
+                      ),
+                    );
                   },
                 ),
                 const SizedBox(
@@ -95,7 +119,12 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                   text: 'See All',
                   categoryName: 'Popular',
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const PopularWatchesView()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PopularWatchesView(),
+                      ),
+                    );
                   },
                 ),
               ],
@@ -103,9 +132,21 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
           ),
           SliverGrid(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => CustomWatchCard(
-                index: index,
-                items: productItems,
+              (context, index) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ItemDetailsView(
+                        item: productItems[index],
+                      ),
+                    ),
+                  );
+                },
+                child: CustomWatchCard(
+                  index: index,
+                  items: productItems,
+                ),
               ),
               childCount: productItems.length,
             ),

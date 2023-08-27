@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'image_controller.dart';
 
 class CustomPageView extends StatelessWidget {
@@ -19,16 +18,16 @@ class CustomPageView extends StatelessWidget {
         children: [
           ImageView(
             fontSize: 24,
-            imageContreller: controller,
+            imageController: controller,
             image: 'assets/images/unsplash.png',
             text: 'Sale Upto',
           ),
           ImageView(
-            imageContreller: controller,
+            imageController: controller,
             image: 'assets/images/unsplash.png',
           ),
           ImageView(
-            imageContreller: controller,
+            imageController: controller,
             image: 'assets/images/unsplash.png',
           ),
         ],

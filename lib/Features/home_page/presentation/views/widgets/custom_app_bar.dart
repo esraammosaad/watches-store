@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
@@ -15,8 +16,10 @@ class CustomAppBar extends StatelessWidget {
         Stack(
           alignment: Alignment.topRight,
           children: [
-            CircleAvatar(backgroundColor: Colors.red[700],
-              radius: 3,),
+            CircleAvatar(
+              backgroundColor: Colors.red[700],
+              radius: 3,
+            ),
             Image.asset('assets/icons/cart.png', height: 30),
           ],
         ),

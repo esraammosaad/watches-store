@@ -4,12 +4,15 @@ import '../../../../../core/utils/styles.dart';
 import 'custom_app_bar.dart';
 import 'custom_page_view.dart';
 import 'custom_search_bar.dart';
+
 class FlexibleBar extends StatelessWidget {
   const FlexibleBar({
     super.key,
     required this.controller,
   });
+
   final PageController controller;
+
   @override
   Widget build(BuildContext context) {
     return FlexibleSpaceBar(
@@ -22,12 +25,17 @@ class FlexibleBar extends StatelessWidget {
               const CustomAppBar(),
               Text(
                 'Hello,',
-                style: Styles.fontSize24
-                    .copyWith(color: const Color(0x80000000)),
+                style: Styles.fontSize24.copyWith(
+                  color: const Color(
+                    0x80000000,
+                  ),
+                ),
               ),
               Text(
                 'Rebprt Nicklas',
-                style: Styles.fontSize24.copyWith(color: Colors.black),
+                style: Styles.fontSize24.copyWith(
+                  color: Colors.black,
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -36,12 +44,14 @@ class FlexibleBar extends StatelessWidget {
               const SizedBox(
                 height: 25,
               ),
-              CustomPageView(controller: controller),
-              Center(
-                child: PageIndicator(controller: controller),
+              CustomPageView(
+                controller: controller,
               ),
-
-
+              Center(
+                child: PageIndicator(
+                  controller: controller,
+                ),
+              ),
             ],
           ),
         ),
@@ -49,4 +59,3 @@ class FlexibleBar extends StatelessWidget {
     );
   }
 }
-

@@ -13,33 +13,29 @@ class WatchesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child:Container(
-
+      child: Container(
         decoration: BoxDecoration(
-          borderRadius:BorderRadius.circular(16),
-          border:Border.all(color: Colors.black,width: 1),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.black, width: 1),
         ),
         child: Column(
           children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-
-            children: [
-              CustomPriceContainer(items: items, index: index),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0, right: 5),
-                child:
-                Image.asset('assets/icons/favorite.png', height: 24),
-              )
-            ],
-          ),
-
-          Image.asset(
-            items[index].image,
-            height: 80,
-            width: 120,
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomPriceContainer(items: items, index: index),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0, right: 5),
+                  child: Image.asset('assets/icons/favorite.png', height: 24),
+                )
+              ],
+            ),
+            Image.asset(
+              items[index].image,
+              height: 80,
+              width: 120,
+            ),
             const Spacer(),
             Container(
               height: 30,
@@ -57,14 +53,9 @@ class WatchesItem extends StatelessWidget {
                 ),
               ),
             ),
-
-
-
-        ],),
-      ) ,
+          ],
+        ),
+      ),
     );
   }
 }
-
-
-
