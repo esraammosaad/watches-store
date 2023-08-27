@@ -36,7 +36,6 @@ class ProfileViewBody extends StatelessWidget {
                   style: Styles.fontSize24.copyWith(color: Colors.black),
                 ),
                 subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
@@ -49,18 +48,23 @@ class ProfileViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Container(
-                      width: 100,
-                      height: 46,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: const Color(0xB2F51010),
-                      ),
-                      child: Center(
-                          child: Text(
-                        "Edit",
-                        style: Styles.fontSize20.copyWith(color: Colors.black),
-                      )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 46,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: const Color(0xB2F51010),
+                          ),
+                          child: Center(
+                              child: Text(
+                            "Edit",
+                            style: Styles.fontSize20.copyWith(color: Colors.black),
+                          )),
+                        ),
+                      ],
                     ),
                   ],
                 ),
