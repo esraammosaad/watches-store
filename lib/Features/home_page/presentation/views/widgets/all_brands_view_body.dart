@@ -5,6 +5,7 @@ import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/brand_item.dart';
 import '../../../data/models/brands_model.dart';
 import '../brand_items_view.dart';
+import 'custom_brand_item.dart';
 
 class AllBrandsViewBody extends StatelessWidget {
   AllBrandsViewBody(
@@ -42,7 +43,7 @@ class AllBrandsViewBody extends StatelessWidget {
                       crossAxisCount: 2,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 10),
-                  itemBuilder: (context, index) => BrandsItem(
+                  itemBuilder: (context, index) => CustomBrandItem(
                         index: index,
                         brands: brands,
                         onTap: () {
