@@ -17,8 +17,8 @@ class CustomPriceContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.only(left: 3, top: 5, right: 3),
-        height: 35,
-        width: 74,
+        height: 32,
+        width: 70,
         decoration: const BoxDecoration(
           color: Color(0xFF444444),
           borderRadius: BorderRadius.only(
@@ -30,7 +30,7 @@ class CustomPriceContainer extends StatelessWidget {
         ),
         child: Text(
           '${items[index].price}' r'$',
-          style: Styles.fontSize20.copyWith(color: Colors.black),
+          style: Styles.fontSize18.copyWith(color: Colors.black),
           textAlign: TextAlign.center,
         ));
   }

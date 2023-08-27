@@ -35,26 +35,26 @@ class BrandsItem extends StatelessWidget {
                   height: 74,
                 ),
               ),
-             Expanded(
-               child: Container(
-                 padding: const EdgeInsets.all(10),
+             const Spacer(),
+             Container(
+               padding: const EdgeInsets.all(10),
+              height: 44,
 
-                width: double.infinity,
-                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                 decoration: const BoxDecoration(
-                   color: Color(0xFF444444),
+              width: double.infinity,
+               clipBehavior: Clip.antiAliasWithSaveLayer,
+               decoration: const BoxDecoration(
+                 color: Color(0xFF444444),
 
-                   borderRadius: BorderRadius.only(
-                     bottomLeft: Radius.circular(16),
-                     bottomRight: Radius.circular(16),
-                   ),
+                 borderRadius: BorderRadius.only(
+                   bottomLeft: Radius.circular(16),
+                   bottomRight: Radius.circular(16),
                  ),
+               ),
 
-                 child:  Text(
-                   brands[index].productBrand,
-                   style: Styles.fontSize20.copyWith(color: const Color(0xB2000000)),
-                   textAlign: TextAlign.center,
-                 ),
+               child:  Text(
+                 brands[index].productBrand,
+                 style: Styles.fontSize18.copyWith(color: const Color(0xB2000000),fontWeight: FontWeight.bold),
+                 textAlign: TextAlign.center,
                ),
              )
             ],

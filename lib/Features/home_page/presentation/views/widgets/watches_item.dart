@@ -13,51 +13,58 @@ class WatchesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Card(
-        shape: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-        color: Colors.transparent,
-        elevation: 0,
-        child: GridTile(
-          header: Row(
+      child:Container(
+
+        decoration: BoxDecoration(
+          borderRadius:BorderRadius.circular(16),
+          border:Border.all(color: Colors.black,width: 1),
+        ),
+        child: Column(
+          children: [
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
+
             children: [
               CustomPriceContainer(items: items, index: index),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0, right: 5),
                 child:
-                    Image.asset('assets/icons/favorite.png', height: 27),
+                Image.asset('assets/icons/favorite.png', height: 24),
               )
             ],
           ),
-          footer: Container(
-            height: 43,
-            decoration: const BoxDecoration(
-              color: Color(0xFF444444),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(16),
-                bottomRight: Radius.circular(16),
+
+          Image.asset(
+            items[index].image,
+            height: 80,
+            width: 120,
+          ),
+            const Spacer(),
+            Container(
+              height: 30,
+              decoration: const BoxDecoration(
+                color: Color(0xFF444444),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  items[index].productName!,
+                  style: Styles.fontSize18.copyWith(color: Colors.black),
+                ),
               ),
             ),
-            child: Center(
-              child: Text(
-                items[index].productName!,
-                style: Styles.fontSize20.copyWith(color: Colors.black),
-              ),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                items[index].image,
-                height: 120,
-                width: 100,
-              ),
-            ],
-          ),
-        ),
-      ),
+
+
+
+        ],),
+      ) ,
     );
   }
 }
+
+
+

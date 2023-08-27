@@ -19,7 +19,7 @@ class AllBrandsViewBody extends StatelessWidget {
       width: double.infinity,
       decoration: buildBoxDecorationColor(),
       child: Padding(
-        padding: const EdgeInsets.only(top: 40.0, left: 20,right: 10),
+        padding: const EdgeInsets.only(top: 35.0, left: 10,right: 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,16 +34,14 @@ class AllBrandsViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
+
             Expanded(
               child: GridView.builder(
                   itemCount: brands.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 20),
+                      crossAxisSpacing: 0,
+                      mainAxisSpacing: 10),
                   itemBuilder: (context, index) => BrandsItem(
                         index: index,
                         brands: brands,

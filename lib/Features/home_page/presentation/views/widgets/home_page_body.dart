@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watsh_store/Features/home_page/presentation/views/widgets/custom_watch_card.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/watches_item.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/brands_model.dart';
@@ -102,7 +103,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
           ),
           SliverGrid(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => WatchesItem(
+              (context, index) => CustomWatchCard(
                 index: index,
                 items: productItems,
               ),
