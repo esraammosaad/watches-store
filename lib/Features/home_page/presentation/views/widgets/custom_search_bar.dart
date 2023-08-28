@@ -8,21 +8,17 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
-        const Expanded(
+        Expanded(
           child: SizedBox(
             height: 45,
             child: CustomTextField(),
           ),
         ),
-        const SizedBox(
+        SizedBox(
           width: 10,
         ),
-        Image.asset(
-          'assets/icons/setting.png',
-          height: 36,
-        )
       ],
     );
   }

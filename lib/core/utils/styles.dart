@@ -83,12 +83,9 @@ Future<void> buildShowModalBottomSheet(
                 const SizedBox(
                   height: 18,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Text(
-                    text,
-                    style: Styles.fontSize24,
-                  ),
+                Text(
+                  text,
+                  style: Styles.fontSize24,textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 50,

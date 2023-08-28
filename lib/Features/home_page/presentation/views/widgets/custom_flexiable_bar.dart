@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watsh_store/Features/home_page/presentation/views/search_view.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/page_indicator.dart';
 import '../../../../../core/utils/styles.dart';
 import 'custom_app_bar.dart';
@@ -40,7 +41,30 @@ class FlexibleBar extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const CustomSearchBar(),
+              Row(
+                children: [
+                  const Expanded(
+                    flex: 4,
+                    child: CustomSearchBar(),
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SearchView(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/icons/setting.png',
+                        height: 36,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(
                 height: 25,
               ),
