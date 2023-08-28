@@ -4,6 +4,7 @@ import '../../../../../core/utils/widgets/custom_cart_button.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
 import '../checkout_view.dart';
 import 'custom_cart_body.dart';
+import 'custom_price_row.dart';
 
 class CartBody extends StatelessWidget {
   const CartBody({
@@ -18,9 +19,9 @@ class CartBody extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(
-              top: 35.0,
+              top: 16.0,
               left: 8,
-              right: 0,
+              right: 16,
             ),
             child: CustomTitle(text: "My Cart"),
           ),
@@ -39,98 +40,42 @@ class CartBody extends StatelessWidget {
               color: Colors.black,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 18),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
               child: Column(
                 children: [
-                  Padding(
+                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 14),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Item total",
-                              style: Styles.fontSize20.copyWith(
-                                color: Colors.white.withOpacity(0.7),
-                              ),
-                            ),
-                            Text(
-                              "1,500\$",
-                              style: Styles.fontSize20.copyWith(
-                                color: Colors.white.withOpacity(0.7),
-                              ),
-                            ),
-                          ],
-                        ),
+                        CustomPriceRow(text: "Item total", price: "1,500\$",style: Styles.fontSize18.copyWith(
+                          color: Colors.white.withOpacity(0.7),
+                        )),
+
                         const SizedBox(
                           height: 10,
                         ),
-                        SizedBox(
-                          height: 50,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Delivery Charge",
-                                style: Styles.fontSize20.copyWith(
-                                  color: Colors.white.withOpacity(0.7),
-                                ),
-                              ),
-                              Text(
-                                "50\$",
-                                style: Styles.fontSize20.copyWith(
-                                  color: Colors.white.withOpacity(0.7),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Tax",
-                                style: Styles.fontSize20.copyWith(
-                                  color: Colors.white.withOpacity(0.7),
-                                ),
-                              ),
-                              Text(
-                                "40\$",
-                                style: Styles.fontSize20.copyWith(
-                                  color: Colors.white.withOpacity(0.7),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        CustomPriceRow(text: "Delivery Charge", price: "50\$",style: Styles.fontSize18.copyWith(
+                          color: Colors.white.withOpacity(0.7),
+                        )),
+
+                        CustomPriceRow(text: "Tax", price: "40\$",style: Styles.fontSize18.copyWith(
+                          color: Colors.white.withOpacity(0.7),
+                        )),
+
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 50,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "total",
-                          style:
-                              Styles.fontSize24.copyWith(color: Colors.white),
-                        ),
-                        Text(
-                          "1,590\$",
-                          style:
-                              Styles.fontSize24.copyWith(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
+                   CustomPriceRow(text:"total",price: "1,590\$",style: Styles.fontSize20.copyWith(
+                    color: Colors.white.withOpacity(0.7),
+                  )),
+
                   const SizedBox(
-                    height: 40,
+                    height: 10,
                   ),
                   CustomCartButton(
+                    containerColor: const Color(0xB2FFFFFF),
+                    textColor: Colors.black,
+
                     onTap: () {
                       Navigator.push(
                         context,
@@ -150,3 +95,5 @@ class CartBody extends StatelessWidget {
     );
   }
 }
+
+

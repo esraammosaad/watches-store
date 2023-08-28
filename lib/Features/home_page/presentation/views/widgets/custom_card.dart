@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
 
 class CustomCard extends StatelessWidget {
-  CustomCard({Key? key, required this.image, required this.title})
+  CustomCard({Key? key, required this.image, required this.title,this.subTitle,required this.style})
       : super(key: key);
   String title;
   String image;
+  Widget ? subTitle;
+  TextStyle style;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class CustomCard extends StatelessWidget {
       shadowColor: const Color(0xFF929292),
       color: const Color(0xFF929292),
       shape: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(16),
         borderSide: const BorderSide(
           color: Color(0xFF929292),
         ),
@@ -23,11 +25,10 @@ class CustomCard extends StatelessWidget {
         contentPadding: const EdgeInsets.all(16),
         title: Text(
           title,
-          style: Styles.fontSize20.copyWith(
-            color: const Color(0xB2000000),
-          ),
+          style: style,
         ),
         leading: Image.asset(image),
+        subtitle: subTitle,
       ),
     );
   }

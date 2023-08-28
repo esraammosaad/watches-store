@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
 
-class CustomCartBody extends StatelessWidget {
+class CustomCartBody extends StatefulWidget {
   const CustomCartBody({
     super.key,
   });
 
+  @override
+  State<CustomCartBody> createState() => _CustomCartBodyState();
+}
+
+class _CustomCartBodyState extends State<CustomCartBody> {
+  int items=1;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -98,22 +104,41 @@ class CustomCartBody extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      GestureDetector(
+                        onTap: (){
+                          if(items>=1){
+
+                            items--;
+                            setState(() {
+
+                            });
+                          }
+                        },
+                        child: Text(
+                          "-",
+                          style: Styles.fontSize20.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                       Text(
-                        "-",
+                        "$items",
                         style: Styles.fontSize20.copyWith(
                           color: Colors.white,
                         ),
                       ),
-                      Text(
-                        "1",
-                        style: Styles.fontSize20.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "+",
-                        style: Styles.fontSize20.copyWith(
-                          color: Colors.white,
+                      GestureDetector(
+                        onTap: (){
+                          items++;
+                          setState(() {
+
+                          });
+                        },
+                        child: Text(
+                          "+",
+                          style: Styles.fontSize20.copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],

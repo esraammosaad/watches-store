@@ -4,6 +4,7 @@ import '../../../../../core/utils/widgets/custom_cart_button.dart';
 import '../../../../../core/utils/widgets/custom_rating_bar.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
 import '../../../data/models/brands_model.dart';
+import '../cart_view.dart';
 import 'add_or_remove_item.dart';
 
 class ItemDetailsBody extends StatelessWidget {
@@ -13,6 +14,7 @@ class ItemDetailsBody extends StatelessWidget {
   });
 
   final ProductsModel item;
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +68,15 @@ class ItemDetailsBody extends StatelessWidget {
                       height: 45,
                     ),
                     CustomCartButton(
+                      containerColor: const Color(0xB2FFFFFF),
+                      textColor: Colors.black,
                       onTap: () {
-                        buildShowModalBottomSheet(context);
+                        buildShowModalBottomSheet(context: context,text: "Added To cart",buttonText: 'See Cart',onTap: (){Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CartView(),
+                          ),
+                        );});
                       },
                       text: "+ Add to Cart",
                     )

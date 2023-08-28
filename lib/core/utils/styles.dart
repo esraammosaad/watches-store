@@ -55,38 +55,49 @@ BoxDecoration buildBoxDecorationColor() {
   );
 }
 
-Future<void> buildShowModalBottomSheet(BuildContext context) {
+Future<void> buildShowModalBottomSheet(
+    {required BuildContext context, required String text, required String buttonText, required VoidCallback onTap}) {
   return showModalBottomSheet<void>(
     context: context,
+
     builder: (BuildContext context) {
       return SingleChildScrollView(
         child: Container(
-          color: Colors.black,
+          
+
+            decoration: const BoxDecoration(
+              color: Colors.black,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(32),
+                  topLeft: Radius.circular(32),
+
+                ),
+
+            ),
+
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 59, horizontal: 33),
             child: Column(
               children: [
-                Image.asset("assets/icons/mdi_success.png"),
+                Image.asset("assets/icons/mdi_success2.png"),
                 const SizedBox(
                   height: 18,
                 ),
-                Text(
-                  "Added To cart",
-                  style: Styles.fontSize32,
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    text,
+                    style: Styles.fontSize24,
+                  ),
                 ),
                 const SizedBox(
                   height: 50,
                 ),
                 CustomCartButton(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CartView(),
-                      ),
-                    );
-                  },
-                  text: "See Cart",
+                  containerColor: const Color(0xB2FFFFFF),
+                  textColor: Colors.black,
+                  onTap: onTap,
+                  text: buttonText,
                 )
               ],
             ),

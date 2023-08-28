@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/brands_model.dart';
 
-class AddOrRemoveItem extends StatelessWidget {
-  const AddOrRemoveItem({
+class AddOrRemoveItem extends StatefulWidget {
+   const AddOrRemoveItem({
     super.key,
     required this.item,
   });
 
   final ProductsModel item;
+
+  @override
+  State<AddOrRemoveItem> createState() => _AddOrRemoveItemState();
+}
+
+class _AddOrRemoveItemState extends State<AddOrRemoveItem> {
+  int numberOfItems=1;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,7 @@ class AddOrRemoveItem extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          child: Image.asset(item.image),
+          child: Image.asset(widget.item.image),
         ),
         Positioned(
           bottom: -18,
@@ -40,22 +47,45 @@ class AddOrRemoveItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                GestureDetector(
+                  onTap: (){
+                    if(numberOfItems>=1){
+
+                      numberOfItems--;
+
+                    }
+                    setState(() {
+
+                    });
+
+
+                  },
+                  child: Text(
+                    "-",
+                    style: Styles.fontSize24.copyWith(
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                  ),
+                ),
                 Text(
-                  "-",
+                  "$numberOfItems",
                   style: Styles.fontSize24.copyWith(
                     color: Colors.white.withOpacity(0.5),
                   ),
                 ),
-                Text(
-                  "1",
-                  style: Styles.fontSize24.copyWith(
-                    color: Colors.white.withOpacity(0.5),
-                  ),
-                ),
-                Text(
-                  "+",
-                  style: Styles.fontSize24.copyWith(
-                    color: Colors.white.withOpacity(0.5),
+                GestureDetector(
+                  onTap: (){
+                    numberOfItems++;
+                    setState(() {
+
+                    });
+
+                  },
+                  child: Text(
+                    "+",
+                    style: Styles.fontSize24.copyWith(
+                      color: Colors.white.withOpacity(0.5),
+                    ),
                   ),
                 ),
               ],

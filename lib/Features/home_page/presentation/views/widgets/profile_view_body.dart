@@ -75,11 +75,21 @@ class ProfileViewBody extends StatelessWidget {
               height: 61,
             ),
             CustomCard(
-                image: 'assets/icons/payment.png', title: 'Payment Method'),
-            CustomCard(image: 'assets/icons/feedback.png', title: 'Feedback'),
-            CustomCard(image: 'assets/icons/help.png', title: 'Help'),
-            CustomCard(image: 'assets/icons/info.png', title: 'privacy Policy'),
-            CustomCard(image: 'assets/icons/logout.png', title: 'Log Out'),
+                image: 'assets/icons/payment.png', title: 'Payment Method',style: Styles.fontSize20.copyWith(
+              color: const Color(0xB2000000),
+            )),
+            CustomCard(image: 'assets/icons/feedback.png', title: 'Feedback',style: Styles.fontSize20.copyWith(
+              color: const Color(0xB2000000),
+            )),
+            CustomCard(image: 'assets/icons/help.png', title: 'Help',style: Styles.fontSize20.copyWith(
+              color: const Color(0xB2000000),
+            )),
+            CustomCard(image: 'assets/icons/info.png', title: 'privacy Policy',style: Styles.fontSize20.copyWith(
+              color: const Color(0xB2000000),
+            )),
+            CustomCard(image: 'assets/icons/logout.png', title: 'Log Out',style: Styles.fontSize20.copyWith(
+              color: const Color(0xB2000000),
+            )),
           ],
         ),
       ),
