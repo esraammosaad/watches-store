@@ -11,13 +11,13 @@ class CustomCartBody extends StatefulWidget {
 }
 
 class _CustomCartBodyState extends State<CustomCartBody> {
-  int items=1;
+  int items = 1;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 19.0),
       child: Container(
-        width: 430,
         height: 140,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -105,13 +105,12 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
-                        onTap: (){
-                          if(items>=1){
-
+                        onTap: () {
+                          if (items >= 1) {
                             items--;
-                            setState(() {
-
-                            });
+                            setState(
+                              () {},
+                            );
                           }
                         },
                         child: Text(
@@ -128,11 +127,11 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           items++;
-                          setState(() {
-
-                          });
+                          setState(
+                            () {},
+                          );
                         },
                         child: Text(
                           "+",

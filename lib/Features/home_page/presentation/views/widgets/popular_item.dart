@@ -11,7 +11,6 @@ class PopularItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Container(
-        width: 430,
         height: 173,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(17),
@@ -29,9 +28,10 @@ class PopularItem extends StatelessWidget {
               ),
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Image.asset(
+                fit: BoxFit.cover,
                 'assets/images/watch.png',
-                width: 170,
-                height: 186,
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context).size.height,
               ),
             ),
             const SizedBox(
@@ -63,8 +63,9 @@ class PopularItem extends StatelessWidget {
                       unratedColor: const Color(0x1B1B1BB2),
                       itemPadding: const EdgeInsets.only(right: 2.0),
                       itemBuilder: (context, _) => const FaIcon(
-                          FontAwesomeIcons.solidStar,
-                          color: Color(0xffFFD233)),
+                        FontAwesomeIcons.solidStar,
+                        color: Color(0xffFFD233),
+                      ),
                       onRatingUpdate: (rating) {
                         //print(rating);
                       },

@@ -3,7 +3,7 @@ import '../../../../../core/utils/styles.dart';
 import '../../../data/models/brands_model.dart';
 
 class AddOrRemoveItem extends StatefulWidget {
-   const AddOrRemoveItem({
+  const AddOrRemoveItem({
     super.key,
     required this.item,
   });
@@ -15,7 +15,7 @@ class AddOrRemoveItem extends StatefulWidget {
 }
 
 class _AddOrRemoveItemState extends State<AddOrRemoveItem> {
-  int numberOfItems=1;
+  int numberOfItems = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +41,14 @@ class _AddOrRemoveItemState extends State<AddOrRemoveItem> {
             height: 36,
             width: 148,
             decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 0,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
               borderRadius: BorderRadius.circular(8),
               color: Colors.black.withOpacity(0.7),
             ),
@@ -48,17 +56,13 @@ class _AddOrRemoveItemState extends State<AddOrRemoveItem> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 GestureDetector(
-                  onTap: (){
-                    if(numberOfItems>=1){
-
+                  onTap: () {
+                    if (numberOfItems >= 1) {
                       numberOfItems--;
-
                     }
-                    setState(() {
-
-                    });
-
-
+                    setState(
+                      () {},
+                    );
                   },
                   child: Text(
                     "-",
@@ -74,12 +78,11 @@ class _AddOrRemoveItemState extends State<AddOrRemoveItem> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     numberOfItems++;
-                    setState(() {
-
-                    });
-
+                    setState(
+                      () {},
+                    );
                   },
                   child: Text(
                     "+",

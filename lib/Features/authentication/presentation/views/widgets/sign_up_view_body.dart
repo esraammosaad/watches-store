@@ -20,13 +20,15 @@ class SignUpViewBody extends StatelessWidget {
           child: Container(
             decoration: buildBoxDecorationColor(),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40),
+              padding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.height * 0.075),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 48),
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height * 0.06),
                     child: Text("Sign Up",
                         style: Styles.fontSize32.copyWith(color: Colors.black)),
                   ),
@@ -34,7 +36,8 @@ class SignUpViewBody extends StatelessWidget {
                     height: 57,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.1),
                     child: Column(
                       children: [
                         CustomTextFormField(

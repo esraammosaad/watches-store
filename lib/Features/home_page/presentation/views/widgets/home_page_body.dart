@@ -77,85 +77,87 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: buildBoxDecorationColor(),
-      child: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            stretch: true,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            expandedHeight: 370,
-            automaticallyImplyLeading: false,
-            flexibleSpace: FlexibleBar(controller: controller),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                CustomBrandsBar(
-                  text: 'See All',
-                  categoryName: 'Brands',
-                  onPressed: () {
+    return SafeArea(
+      child: Container(
+        decoration: buildBoxDecorationColor(),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              stretch: true,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              expandedHeight: MediaQuery.of(context).size.height * 0.6,
+              automaticallyImplyLeading: false,
+              flexibleSpace: FlexibleBar(controller: controller),
+            ),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  CustomBrandsBar(
+                    text: 'See All',
+                    categoryName: 'Brands',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AllBrandsView(
+                            brands: brands,
+                            productItems: productItems,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CustomBrandsListView(
+                      brands: brands, productItems: productItems),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomBrandsBar(
+                    text: 'See All',
+                    categoryName: 'Popular',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PopularWatchesView(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => GestureDetector(
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AllBrandsView(
-                          brands: brands,
-                          productItems: productItems,
+                        builder: (context) => ItemDetailsView(
+                          item: productItems[index],
                         ),
                       ),
                     );
                   },
+                  child: CustomWatchCard(
+                    index: index,
+                    items: productItems,
+                  ),
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
-                CustomBrandsListView(
-                    brands: brands, productItems: productItems),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomBrandsBar(
-                  text: 'See All',
-                  categoryName: 'Popular',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const PopularWatchesView(),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-          SliverGrid(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ItemDetailsView(
-                        item: productItems[index],
-                      ),
-                    ),
-                  );
-                },
-                child: CustomWatchCard(
-                  index: index,
-                  items: productItems,
-                ),
+                childCount: productItems.length,
               ),
-              childCount: productItems.length,
-            ),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 10,
-            ),
-          )
-        ],
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

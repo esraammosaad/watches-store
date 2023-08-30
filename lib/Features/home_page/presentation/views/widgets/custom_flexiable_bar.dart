@@ -19,7 +19,10 @@ class FlexibleBar extends StatelessWidget {
     return FlexibleSpaceBar(
       background: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+          padding: EdgeInsets.only(
+              top: 16,
+              left: MediaQuery.of(context).size.width * 0.05,
+              right: MediaQuery.of(context).size.width * 0.05),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

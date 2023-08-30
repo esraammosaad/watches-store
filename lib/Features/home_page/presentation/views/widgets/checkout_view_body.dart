@@ -11,154 +11,173 @@ class CheckoutViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: buildBoxDecorationColor(),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-             Padding(
-              padding: const EdgeInsets.only(
-                top: 16.0,
-                left: 8,
-                right: 16,
+    return SafeArea(
+      child: Container(
+        decoration: buildBoxDecorationColor(),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 16.0,
+                  left: 8,
+                  right: 16,
+                ),
+                child: CustomTitle(
+                  text: "Checkout",
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
-              child: CustomTitle(text: "Checkout", onPressed: () {
-                Navigator.pop(context);
-              },),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Column(
-                children: [
-                  Card(
-                    elevation: 15,
-                    color: const Color(0xFF929292),
-                    shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32),
-                      borderSide:
-                          const BorderSide(color: Color(0xFF929292), width: 1),
-                    ),
-                    child: ListTile(
-                      contentPadding:
-                          const EdgeInsets.only(top: 25, right: 20, left: 20),
-                      title: Text(
-                        'Delivery Address,',
-                        style: Styles.fontSize24.copyWith(
-                          color: const Color(0xB2000000),
+              const SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.04,
+                ),
+                child: Column(
+                  children: [
+                    Card(
+                      elevation: 15,
+                      color: const Color(0xFF929292),
+                      shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF929292),
+                          width: 1,
                         ),
                       ),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.only(top: 27.0, bottom: 30),
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(32),
-                            border: Border.all(color: Colors.black),
-                          ),
-                          child: Text(
-                            '003 Junction Johnson45Apt',
-                            style:
-                                Styles.fontSize16.copyWith(color: Colors.black),
+                      child: ListTile(
+                        contentPadding:
+                            const EdgeInsets.only(top: 25, right: 20, left: 20),
+                        title: Text(
+                          'Delivery Address,',
+                          style: Styles.fontSize24.copyWith(
+                            color: const Color(0xB2000000),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Card(
-                    elevation: 15,
-                    color: const Color(0xFF929292),
-                    shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32),
-                      borderSide:
-                          const BorderSide(color: Color(0xFF929292), width: 1),
-                    ),
-                    child: ListTile(
-                      contentPadding:
-                          const EdgeInsets.only(top: 25, left: 16, bottom: 30),
-                      title: Text(
-                        'Payment Method,',
-                        style: Styles.fontSize24.copyWith(
-                          color: const Color(0xB2000000),
-                        ),
-                      ),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.only(top: 20.0, right: 10),
-                        child: Column(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(color: Colors.black),
-                              ),
-                              child: Row(
-                                children: [
-                                  Image.asset('assets/icons/image.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Credit card',
-                                    style: Styles.fontSize16
-                                        .copyWith(color: Colors.black),
-                                  ),
-                                  const Spacer(),
-                                  Image.asset('assets/icons/mdi_success.png'),
-                                ],
+                        subtitle: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 27.0,
+                            bottom: 30,
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(32),
+                              border: Border.all(color: Colors.black),
+                            ),
+                            child: Text(
+                              '003 Junction Johnson45Apt',
+                              style: Styles.fontSize16.copyWith(
+                                color: Colors.black,
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            CustomContainer(
-                              text: 'QR Code',
-                              image: 'assets/icons/bi_qr-code-scan.png',
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            CustomContainer(
-                              image: 'assets/icons/image2.png',
-                              text: 'PayPal',
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            CustomBlackContainer(
-              widget: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomCartButton(
-                    containerColor: const Color(0xB2FFFFFF),
-                    textColor: Colors.black,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PaymentView(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Card(
+                      elevation: 15,
+                      color: const Color(0xFF929292),
+                      shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF929292),
+                          width: 1,
                         ),
-                      );
-                    },
-                    text: 'Payment',
-                  ),
-                ],
+                      ),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.only(
+                          top: 25,
+                          left: 16,
+                          bottom: 30,
+                        ),
+                        title: Text(
+                          'Payment Method,',
+                          style: Styles.fontSize24.copyWith(
+                            color: const Color(0xB2000000),
+                          ),
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.only(top: 20.0, right: 10),
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(color: Colors.black),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Image.asset('assets/icons/image.png'),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Credit card',
+                                      style: Styles.fontSize16.copyWith(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Image.asset('assets/icons/mdi_success.png'),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              CustomContainer(
+                                text: 'QR Code',
+                                image: 'assets/icons/bi_qr-code-scan.png',
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              CustomContainer(
+                                image: 'assets/icons/image2.png',
+                                text: 'PayPal',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 30,
+              ),
+              CustomBlackContainer(
+                widget: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomCartButton(
+                      containerColor: const Color(0xB2FFFFFF),
+                      textColor: Colors.black,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const PaymentView(),
+                          ),
+                        );
+                      },
+                      text: 'Payment',
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

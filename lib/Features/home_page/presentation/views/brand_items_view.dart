@@ -3,10 +3,14 @@ import 'package:watsh_store/Features/home_page/presentation/views/widgets/brand-
 import '../../data/models/brands_model.dart';
 
 class BrandItemsView extends StatelessWidget {
-  BrandItemsView({super.key, required this.brandItem, required this.brandName});
+  const BrandItemsView({
+    super.key,
+    required this.brandItem,
+    required this.brandName,
+  });
 
-  List<ProductsModel> brandItem;
-  String brandName;
+  final List<ProductsModel> brandItem;
+  final String brandName;
 
   @override
   Widget build(BuildContext context) {

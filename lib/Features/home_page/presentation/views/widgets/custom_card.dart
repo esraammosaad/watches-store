@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/styles.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({Key? key, required this.image, required this.title,this.subTitle,required this.style, required this.onTap})
+  const CustomCard(
+      {Key? key,
+      required this.image,
+      required this.title,
+      this.subTitle,
+      required this.style,
+      required this.onTap})
       : super(key: key);
- final String title;
+  final String title;
   final String image;
-  final Widget ? subTitle;
+  final Widget? subTitle;
   final TextStyle style;
   final VoidCallback onTap;
 
@@ -30,7 +35,8 @@ class CustomCard extends StatelessWidget {
             title,
             style: style,
           ),
-          leading: Image.asset(image),
+          leading: Image.asset(image,
+              width: MediaQuery.of(context).size.width * 0.15),
           subtitle: subTitle,
         ),
       ),

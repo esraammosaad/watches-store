@@ -13,87 +13,98 @@ class CartBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: buildBoxDecorationColor(),
-      child: Column(
-        children: [
-       Padding(
-      padding: const EdgeInsets.only(
-        top: 16.0,
-        left: 8,
-        right: 16,
-      ),
-      child: CustomTitle(text: "My Cart",onPressed: () {
-        Navigator.pop(context);
-      },),
-    ),
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) => const CustomCartBody(),
-              itemCount: 6,
-            ),
-          ),
-          Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(32),
-                topLeft: Radius.circular(32),
+    return SafeArea(
+      child: Container(
+        decoration: buildBoxDecorationColor(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 16.0, left: 8, right: 16, bottom: 16),
+              child: CustomTitle(
+                text: "My Cart",
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-              color: Colors.black,
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-              child: Column(
-                children: [
-                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 14),
-                    child: Column(
-                      children: [
-                        CustomPriceRow(text: "Item total", price: "1,500\$",style: Styles.fontSize20.copyWith(
-                          color: Colors.white.withOpacity(0.7),
-                        )),
-
-
-                        CustomPriceRow(text: "Delivery Charge", price: "50\$",style: Styles.fontSize20.copyWith(
-                          color: Colors.white.withOpacity(0.7),
-                        )),
-
-                        CustomPriceRow(text: "Tax", price: "40\$",style: Styles.fontSize20.copyWith(
-                          color: Colors.white.withOpacity(0.7),
-                        )),
-
-                      ],
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) => const CustomCartBody(),
+                itemCount: 6,
+              ),
+            ),
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(32),
+                  topLeft: Radius.circular(32),
+                ),
+                color: Colors.black,
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height * 0.05,
+                    horizontal: MediaQuery.of(context).size.width * 0.04),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      child: Column(
+                        children: [
+                          CustomPriceRow(
+                            text: "Item total",
+                            price: "1,500\$",
+                            style: Styles.fontSize20.copyWith(
+                              color: Colors.white.withOpacity(0.7),
+                            ),
+                          ),
+                          CustomPriceRow(
+                              text: "Delivery Charge",
+                              price: "50\$",
+                              style: Styles.fontSize20.copyWith(
+                                color: Colors.white.withOpacity(0.7),
+                              )),
+                          CustomPriceRow(
+                            text: "Tax",
+                            price: "40\$",
+                            style: Styles.fontSize20.copyWith(
+                              color: Colors.white.withOpacity(0.7),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                   CustomPriceRow(text:"total",price: "1,590\$",style: Styles.fontSize24.copyWith(
-                    color: Colors.white.withOpacity(0.7),
-                  )),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CustomCartButton(
-                    containerColor: const Color(0xB2FFFFFF),
-                    textColor: Colors.black,
-
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CheckoutView(),
-                        ),
-                      );
-                    },
-                    text: "Checkout",
-                  )
-                ],
+                    CustomPriceRow(
+                      text: "total",
+                      price: "1,590\$",
+                      style: Styles.fontSize24.copyWith(
+                        color: Colors.white.withOpacity(0.7),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CustomCartButton(
+                      containerColor: const Color(0xB2FFFFFF),
+                      textColor: Colors.black,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CheckoutView(),
+                          ),
+                        );
+                      },
+                      text: "Checkout",
+                    )
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
 }
-
-
