@@ -36,13 +36,15 @@ class ProfileViewBody extends StatelessWidget {
                 ),
                 subtitle: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text(
-                        'Rebprt22@gamil.com',
-                        style: Styles.fontSize18
-                            .copyWith(color: const Color(0x80000000)),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Rebprt22@gamil.com',
+                          style: Styles.fontSize18
+                              .copyWith(color: const Color(0x80000000)),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 5,
