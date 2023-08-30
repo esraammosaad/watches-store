@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:watsh_store/Features/authentication/presentation/views/sign_in_view.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../../../core/utils/widgets/custom_title.dart';
+import '../home_page_view.dart';
 import 'custom_card.dart';
 
 class ProfileViewBody extends StatelessWidget {
@@ -14,13 +17,22 @@ class ProfileViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 32.0, top: 16, bottom: 16),
-              child: Text(
-                'Profile',
-                style: Styles.fontSize36.copyWith(color: Colors.black),
+             Padding(
+              padding: const EdgeInsets.only(
+                top: 16.0,
+                left: 8,
+                right: 16,
               ),
+              child: CustomTitle(text: "Profile",onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePageView()));
+
+
+
+
+
+              }),
             ),
+            const SizedBox(height: 20,),
             Card(
               elevation: 15,
               shadowColor: const Color(0xFF929292),
@@ -79,19 +91,19 @@ class ProfileViewBody extends StatelessWidget {
             CustomCard(
                 image: 'assets/icons/payment.png', title: 'Payment Method',style: Styles.fontSize20.copyWith(
               color: const Color(0xB2000000),
-            )),
+            ),onTap: (){}),
             CustomCard(image: 'assets/icons/feedback.png', title: 'Feedback',style: Styles.fontSize20.copyWith(
               color: const Color(0xB2000000),
-            )),
+            ),onTap: (){}),
             CustomCard(image: 'assets/icons/help.png', title: 'Help',style: Styles.fontSize20.copyWith(
               color: const Color(0xB2000000),
-            )),
+            ),onTap: (){}),
             CustomCard(image: 'assets/icons/info.png', title: 'privacy Policy',style: Styles.fontSize20.copyWith(
               color: const Color(0xB2000000),
-            )),
+            ),onTap: (){}),
             CustomCard(image: 'assets/icons/logout.png', title: 'Log Out',style: Styles.fontSize20.copyWith(
               color: const Color(0xB2000000),
-            )),
+            ),onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignInView()));}),
           ],
         ),
       ),

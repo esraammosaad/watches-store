@@ -16,13 +16,15 @@ class CheckoutViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(
+             Padding(
+              padding: const EdgeInsets.only(
                 top: 16.0,
                 left: 8,
                 right: 16,
               ),
-              child: CustomTitle(text: "Checkout"),
+              child: CustomTitle(text: "Checkout", onPressed: () {
+                Navigator.pop(context);
+              },),
             ),
             const SizedBox(
               height: 15,

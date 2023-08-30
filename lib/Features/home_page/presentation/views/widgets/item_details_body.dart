@@ -25,7 +25,9 @@ class ItemDetailsBody extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 16.0, left: 8, right: 16),
-              child: CustomTitle(text: item.productName!),
+              child: CustomTitle(text: item.productName!,onPressed: () {
+                Navigator.pop(context);
+              },),
             ),
             const SizedBox(height: 30,),
             AddOrRemoveItem(item: item),

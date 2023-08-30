@@ -22,12 +22,14 @@ class AllBrandsViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(
+             Padding(
+              padding: const EdgeInsets.only(
 
                 right: 16,
               ),
-              child: CustomTitle(text: "Brands"),
+              child: CustomTitle(text: "Brands",onPressed: () {
+                Navigator.pop(context);
+              },),
             ),
             Expanded(
               child: GridView.builder(

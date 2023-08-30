@@ -13,22 +13,30 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
+  PageController? pageController =PageController();
+
   int selectedIndex = 0;
-  List<Widget> screens = [
-    const HomePageViewBody(),
-    const FavoriteView(),
-    const ProfileView()
-  ];
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[selectedIndex],
+      body: PageView(
+        controller:pageController ,
+        onPageChanged: (index){
+          selectedIndex=index;
+          setState(() {
+
+          });
+        },
+        children: const [
+          HomePageViewBody(),
+          FavoriteView(),
+          ProfileView()],
+     ),
       bottomNavigationBar: CustomNavBar(
           onTap: (index) {
-            selectedIndex = index;
-            print(selectedIndex);
-            setState(() {});
+            pageController!.jumpToPage(index);
           },
           index: selectedIndex),
     );

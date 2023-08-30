@@ -13,11 +13,13 @@ class PopularWatchesViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+           Padding(
             padding:
-                EdgeInsets.only(top: 40.0, left: 10, right: 30, bottom: 13),
+                const EdgeInsets.only(top: 40.0, left: 10, right: 30, bottom: 13),
             child: CustomTitle(
-              text: 'Popular Watches',
+              text: 'Popular Watches',onPressed: () {
+              Navigator.pop(context);
+            },
             ),
           ),
           Expanded(

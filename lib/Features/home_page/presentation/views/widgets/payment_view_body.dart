@@ -17,13 +17,15 @@ class PaymentViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-              const Padding(
-              padding: EdgeInsets.only(
+               Padding(
+              padding: const EdgeInsets.only(
                 top: 16.0,
                 left: 8,
                 right: 16,
               ),
-              child: CustomTitle(text: "Payment"),
+              child: CustomTitle(text: "Payment",onPressed: () {
+                Navigator.pop(context);
+              },),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 25),
@@ -32,6 +34,7 @@ class PaymentViewBody extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 2),
                     child: CustomCard(
+                      onTap: (){},
                       image: 'assets/icons/image.png',
                       title: 'Credit card Payment',
                       style: Styles.fontSize18.copyWith(

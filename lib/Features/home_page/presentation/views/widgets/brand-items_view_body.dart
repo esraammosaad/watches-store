@@ -24,7 +24,9 @@ class BrandItemsViewBody extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 11.0),
-              child: CustomTitle(text: brandName),
+              child: CustomTitle(text: brandName,onPressed: () {
+                Navigator.pop(context);
+              },),
             ),
             Expanded(
               child: GridView.builder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watsh_store/Features/home_page/presentation/views/home_page_view.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/custom_app_bar.dart';
 import 'package:watsh_store/core/utils/widgets/custom_category_bar.dart';
 import '../../../../../core/utils/styles.dart';
@@ -13,13 +14,17 @@ class FavoriteViewBody extends StatelessWidget {
       decoration: buildBoxDecorationColor(),
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.only(
+           Padding(
+            padding: const EdgeInsets.only(
               top: 16.0,
               left: 8,
               right: 16,
             ),
-            child: CustomTitle(text: "Favorite"),
+            child: CustomTitle(text: "Favorite",onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePageView()));
+
+
+            }),
           ),
           Expanded(child: ListView.builder(itemBuilder: (context,index)=>const FavoriteItem(),itemCount: 3,))
 

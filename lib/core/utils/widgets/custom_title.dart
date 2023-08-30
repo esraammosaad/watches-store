@@ -4,19 +4,18 @@ import '../styles.dart';
 class CustomTitle extends StatelessWidget {
   const CustomTitle({
     super.key,
-    required this.text,
+    required this.text, required this.onPressed,
   });
 
   final String text;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: onPressed,
           icon: const Icon(
             Icons.arrow_back,
             size: 32,

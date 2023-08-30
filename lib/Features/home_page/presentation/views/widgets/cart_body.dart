@@ -17,13 +17,15 @@ class CartBody extends StatelessWidget {
       decoration: buildBoxDecorationColor(),
       child: Column(
         children: [
-      const Padding(
-      padding: EdgeInsets.only(
+       Padding(
+      padding: const EdgeInsets.only(
         top: 16.0,
         left: 8,
         right: 16,
       ),
-      child: CustomTitle(text: "My Cart"),
+      child: CustomTitle(text: "My Cart",onPressed: () {
+        Navigator.pop(context);
+      },),
     ),
           Expanded(
             child: ListView.builder(

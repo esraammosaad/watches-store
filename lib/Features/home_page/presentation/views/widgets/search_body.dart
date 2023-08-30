@@ -14,10 +14,12 @@ class SearchBody extends StatelessWidget {
       decoration: buildBoxDecorationColor(),
       child: Column(
         children: [
-          const Padding(
+           Padding(
             padding:
-                EdgeInsets.only(top: 30.0, right: 16, left: 16, bottom: 16),
-            child: CustomTitle(text: 'Search'),
+                const EdgeInsets.only(top: 30.0, right: 16, left: 16, bottom: 16),
+            child: CustomTitle(text: 'Search',onPressed: () {
+              Navigator.pop(context);
+            },),
           ),
           const Padding(
             padding: EdgeInsets.only(bottom: 20, right: 8, left: 8),
