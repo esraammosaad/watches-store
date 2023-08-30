@@ -51,7 +51,6 @@ class FavoriteItem extends StatelessWidget {
             padding: const EdgeInsets.only(left: 70.0),
             child: Card(
 
-
               elevation: 12,
               shadowColor:  const Color(0x80000000)      ,
               color:  const  Color(0xB2FFFFFF),

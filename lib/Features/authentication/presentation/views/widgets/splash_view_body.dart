@@ -50,7 +50,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   Future<Object?> navigateToSignIn() {
     return Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(milliseconds: 1500),
       () => Navigator.push(
         context,
         MaterialPageRoute(
