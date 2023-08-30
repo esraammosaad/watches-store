@@ -18,11 +18,14 @@ class BrandItemsViewBody extends StatelessWidget {
       width: double.infinity,
       decoration: buildBoxDecorationColor(),
       child: Padding(
-        padding: const EdgeInsets.only(top: 35.0, left: 2, right: 2),
+        padding: const EdgeInsets.only(top: 16.0, left: 8, right: 5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomTitle(text: brandName),
+            Padding(
+              padding: const EdgeInsets.only(right: 11.0),
+              child: CustomTitle(text: brandName),
+            ),
             Expanded(
               child: GridView.builder(
                 itemCount: brandItems.length,

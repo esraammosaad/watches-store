@@ -17,17 +17,20 @@ class PaymentViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
-              padding:
-                  EdgeInsets.only(top: 30.0, right: 16, left: 16, bottom: 16),
-              child: CustomTitle(text: 'Payment'),
+              const Padding(
+              padding: EdgeInsets.only(
+                top: 16.0,
+                left: 8,
+                right: 16,
+              ),
+              child: CustomTitle(text: "Payment"),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 25),
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
                     child: CustomCard(
                       image: 'assets/icons/image.png',
                       title: 'Credit card Payment',
@@ -37,7 +40,7 @@ class PaymentViewBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 25,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -47,14 +50,14 @@ class PaymentViewBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 25,
                   ),
                   CustomPaymentField(
                       label: 'Card Number',
                       hint: '0000 0000 0000 0000',
                       textInputAction: TextInputAction.next),
                   const SizedBox(
-                    height: 20,
+                    height: 25,
                   ),
                   Row(
                     children: [
@@ -79,7 +82,7 @@ class PaymentViewBody extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 60,
             ),
             CustomBlackContainer(
               widget: Column(

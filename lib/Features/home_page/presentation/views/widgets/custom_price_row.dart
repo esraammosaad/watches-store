@@ -8,7 +8,7 @@ class CustomPriceRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   SizedBox(
-      height: 40,
+      height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

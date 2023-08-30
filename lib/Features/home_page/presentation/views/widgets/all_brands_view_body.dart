@@ -18,11 +18,17 @@ class AllBrandsViewBody extends StatelessWidget {
       width: double.infinity,
       decoration: buildBoxDecorationColor(),
       child: Padding(
-        padding: const EdgeInsets.only(top: 35.0, left: 8, right: 0),
+        padding: const EdgeInsets.only(top: 16.0, left: 8, right: 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomTitle(text: 'Brands'),
+            const Padding(
+              padding: EdgeInsets.only(
+
+                right: 16,
+              ),
+              child: CustomTitle(text: "Brands"),
+            ),
             Expanded(
               child: GridView.builder(
                 itemCount: brands.length,

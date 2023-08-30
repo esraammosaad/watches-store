@@ -24,14 +24,16 @@ class ItemDetailsBody extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 35.0, left: 8, right: 0),
+              padding: const EdgeInsets.only(top: 16.0, left: 8, right: 16),
               child: CustomTitle(text: item.productName!),
             ),
+            const SizedBox(height: 30,),
             AddOrRemoveItem(item: item),
             const SizedBox(
-              height: 48,
+              height: 80,
             ),
             Container(
+              height: 400,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(32),

@@ -17,18 +17,18 @@ class CartBody extends StatelessWidget {
       decoration: buildBoxDecorationColor(),
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.only(
-              top: 16.0,
-              left: 8,
-              right: 16,
-            ),
-            child: CustomTitle(text: "My Cart"),
-          ),
+      const Padding(
+      padding: EdgeInsets.only(
+        top: 16.0,
+        left: 8,
+        right: 16,
+      ),
+      child: CustomTitle(text: "My Cart"),
+    ),
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) => const CustomCartBody(),
-              itemCount: 2,
+              itemCount: 6,
             ),
           ),
           Container(
@@ -47,25 +47,23 @@ class CartBody extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 14),
                     child: Column(
                       children: [
-                        CustomPriceRow(text: "Item total", price: "1,500\$",style: Styles.fontSize18.copyWith(
+                        CustomPriceRow(text: "Item total", price: "1,500\$",style: Styles.fontSize20.copyWith(
                           color: Colors.white.withOpacity(0.7),
                         )),
 
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomPriceRow(text: "Delivery Charge", price: "50\$",style: Styles.fontSize18.copyWith(
+
+                        CustomPriceRow(text: "Delivery Charge", price: "50\$",style: Styles.fontSize20.copyWith(
                           color: Colors.white.withOpacity(0.7),
                         )),
 
-                        CustomPriceRow(text: "Tax", price: "40\$",style: Styles.fontSize18.copyWith(
+                        CustomPriceRow(text: "Tax", price: "40\$",style: Styles.fontSize20.copyWith(
                           color: Colors.white.withOpacity(0.7),
                         )),
 
                       ],
                     ),
                   ),
-                   CustomPriceRow(text:"total",price: "1,590\$",style: Styles.fontSize20.copyWith(
+                   CustomPriceRow(text:"total",price: "1,590\$",style: Styles.fontSize24.copyWith(
                     color: Colors.white.withOpacity(0.7),
                   )),
 

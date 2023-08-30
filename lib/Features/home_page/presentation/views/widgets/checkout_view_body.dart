@@ -17,14 +17,18 @@ class CheckoutViewBody extends StatelessWidget {
         child: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 30.0, right: 16, left: 16),
-              child: CustomTitle(text: 'CheckOut'),
+              padding: EdgeInsets.only(
+                top: 16.0,
+                left: 8,
+                right: 16,
+              ),
+              child: CustomTitle(text: "Checkout"),
             ),
             const SizedBox(
               height: 15,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Column(
                 children: [
                   Card(
@@ -62,7 +66,7 @@ class CheckoutViewBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
                   Card(
                     elevation: 15,
@@ -130,7 +134,7 @@ class CheckoutViewBody extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 60,
+              height: 30,
             ),
             CustomBlackContainer(
               widget: Column(
