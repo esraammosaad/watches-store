@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import '../../../data/models/brands_model.dart';
 import 'custom_price_container.dart';
 
 class WatchesItem extends StatelessWidget {
-  WatchesItem({Key? key, required this.index, required this.items})
+  const WatchesItem({Key? key, required this.index, required this.items})
       : super(key: key);
-  int index;
-  List<ProductsModel> items;
+  final int index;
+  final List<ProductsModel> items;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +28,26 @@ class WatchesItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomPriceContainer(items: items, index: index),
-                Padding(
-                  padding: const EdgeInsets.only(top: 5.0, right: 5),
-                  child: Image.asset('assets/icons/favorite.png', height: 24),
+                GestureDetector(
+                  onTap: () {
+                    BlocProvider.of<FavoriteCubit>(context)
+                        .getFavoriteItems(
+                        item: items[index]);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 5.0, right: 5),
+                    child: items[index].isFavorite
+                        ? const Icon(
+                      FontAwesomeIcons.solidHeart,
+                      color: Colors.red,
+                      size: 30,
+                    )
+                        : const Icon(
+                      FontAwesomeIcons.heart,
+                      color: Colors.black,
+                      size: 30,
+                    ),
+                  ),
                 )
               ],
             ),
