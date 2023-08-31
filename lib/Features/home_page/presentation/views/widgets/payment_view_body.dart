@@ -12,117 +12,127 @@ class PaymentViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: buildBoxDecorationColor(),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-               Padding(
-              padding: const EdgeInsets.only(
-                top: 16.0,
-                left: 8,
-                right: 16,
+    return SafeArea(
+      child: Container(
+        decoration: buildBoxDecorationColor(),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 16.0,
+                  left: 8,
+                  right: 16,
+                ),
+                child: CustomTitle(
+                  text: "Payment",
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
-              child: CustomTitle(text: "Payment",onPressed: () {
-                Navigator.pop(context);
-              },),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 25),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2),
-                    child: CustomCard(
-                      onTap: (){},
-                      image: 'assets/icons/image.png',
-                      title: 'Credit card Payment',
-                      style: Styles.fontSize18.copyWith(
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2),
+                      child: CustomCard(
+                        onTap: () {},
+                        image: 'assets/icons/image.png',
+                        title: 'Credit card Payment',
+                        style: Styles.fontSize18.copyWith(
                           color: const Color(0xB2000000),
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Text(
-                      'Enter Your Card Detailes to Pay',
-                      style: Styles.fontSize18.copyWith(color: Colors.black),
+                    const SizedBox(
+                      height: 25,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  CustomPaymentField(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Text(
+                        'Enter Your Card Detailes to Pay',
+                        style: Styles.fontSize18.copyWith(color: Colors.black),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    CustomPaymentField(
                       label: 'Card Number',
                       hint: '0000 0000 0000 0000',
-                      textInputAction: TextInputAction.next),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomPaymentField(
+                      textInputAction: TextInputAction.next,
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomPaymentField(
                             label: 'Card Expire',
                             hint: 'MM / YY',
-                            textInputAction: TextInputAction.next),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: CustomPaymentField(
+                            textInputAction: TextInputAction.next,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: CustomPaymentField(
                             label: 'CVV',
                             hint: '123',
-                            textInputAction: TextInputAction.done),
-                      )
-                    ],
-                  ),
-                ],
+                            textInputAction: TextInputAction.done,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            CustomBlackContainer(
-              widget: Column(
-                children: [
-                  CustomCartButton(
-                    containerColor: const Color(0xB2FFFFFF),
-                    textColor: Colors.black,
-                    onTap: () {
-                      buildShowModalBottomSheet(
-                        context: context,
-                        buttonText: 'Continue shopping',
-                        text: 'Thank you for your order',
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePageView(),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    text: 'Confirm Payment',
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomCartButton(
-                    onTap: () {},
-                    text: 'Cancel Payment',
-                    textColor: const Color(0xB2FFFFFF),
-                    containerColor: Colors.transparent,
-                  )
-                ],
+              const SizedBox(
+                height: 60,
               ),
-            ),
-          ],
+              CustomBlackContainer(
+                widget: Column(
+                  children: [
+                    CustomCartButton(
+                      containerColor: const Color(0xB2FFFFFF),
+                      textColor: Colors.black,
+                      onTap: () {
+                        buildShowModalBottomSheet(
+                          context: context,
+                          buttonText: 'Continue shopping',
+                          text: 'Thank you for your order',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePageView(),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      text: 'Confirm Payment',
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomCartButton(
+                      onTap: () {},
+                      text: 'Cancel Payment',
+                      textColor: const Color(0xB2FFFFFF),
+                      containerColor: Colors.transparent,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

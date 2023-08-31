@@ -4,7 +4,8 @@ import '../styles.dart';
 class CustomTitle extends StatelessWidget {
   const CustomTitle({
     super.key,
-    required this.text, required this.onPressed,
+    required this.text,
+    required this.onPressed,
   });
 
   final String text;
@@ -25,6 +26,8 @@ class CustomTitle extends StatelessWidget {
         Expanded(
           child: Center(
             child: Text(
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               text,
               style: Styles.fontSize24.copyWith(color: Colors.black),
             ),

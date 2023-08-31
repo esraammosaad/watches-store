@@ -81,7 +81,7 @@ Future<void> buildShowModalBottomSheet(
             ),
 
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 59, horizontal: 33),
+            padding:  EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height*0.13, horizontal: MediaQuery.of(context).size.width*0.08),
             child: Column(
               children: [
                 Image.asset("assets/icons/mdi_success2.png"),

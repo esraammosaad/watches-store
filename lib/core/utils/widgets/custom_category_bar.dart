@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import '../styles.dart';
 
 class CustomBrandsBar extends StatelessWidget {
-  CustomBrandsBar(
+  const CustomBrandsBar(
       {super.key,
       required this.text,
       required this.categoryName,
       required this.onPressed});
 
-  String categoryName;
-  String text;
-  VoidCallback onPressed;
+  final String categoryName;
+  final String text;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 35.0,
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.1,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
