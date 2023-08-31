@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../../../constents.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_cart_button.dart';
 import '../../../../../core/utils/widgets/custom_rating_bar.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
+import '../../../../authentication/presentation/manager/cart_cubit/cart_cubit.dart';
 import '../../../data/models/brands_model.dart';
 import '../cart_view.dart';
 import 'add_or_remove_item.dart';
@@ -79,10 +80,8 @@ class ItemDetailsBody extends StatelessWidget {
                       containerColor: const Color(0xB2FFFFFF),
                       textColor: Colors.black,
                       onTap: () {
-                        if (!cartItems.contains(item)) {
-                          cartItems.add(item);
-                          totalPrice = totalPrice + item.price!;
-                        }
+                        BlocProvider.of<CartCubit>(context).getCartItems(item: item);
+
 
 
 
@@ -94,8 +93,8 @@ class ItemDetailsBody extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => CartView(
-                                    items: cartItems,
+                                  builder: (context) => const CartView(
+
                                   ),
                                 ),
                               );
