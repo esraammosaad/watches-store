@@ -36,48 +36,7 @@ class HomePageViewBody extends StatelessWidget {
       isFavorite: false,
     ),
   ];
-  List<ProductsModel> productItems = [
-    ProductsModel(
-      image: 'assets/images/omega.png',
-      description:
-          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
-      productName: 'Omega',
-      price: 500,
-      id: 0,
-      productBrand: 'Omega',
-      isFavorite: false,
-    ),
-    ProductsModel(
-      image: 'assets/images/piaget.png',
-      description:
-          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
-      productName: 'Piaget',
-      price: 500,
-      id: 1,
-      productBrand: 'Jaeger',
-      isFavorite: false,
-    ),
-    ProductsModel(
-      image: 'assets/images/meister.png',
-      description:
-          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
-      productName: 'meister',
-      price: 500,
-      id: 2,
-      productBrand: 'Omega',
-      isFavorite: false,
-    ),
-    ProductsModel(
-      image: 'assets/images/piaget.png',
-      description:
-          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
-      productName: 'Piaget',
-      price: 500,
-      id: 3,
-      productBrand: 'TAG',
-      isFavorite: false,
-    ),
-  ];
+
   String? brandName;
   int selectedIndex = 0;
 
@@ -107,7 +66,7 @@ class HomePageViewBody extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => AllBrandsView(
                           brands: brands,
-                          productItems: productItems,
+                          productItems: BlocProvider.of<FavoriteCubit>(context).productItems,
                         ),
                       ),
                     );
@@ -117,7 +76,7 @@ class HomePageViewBody extends StatelessWidget {
                   height: 8,
                 ),
                 CustomBrandsListView(
-                    brands: brands, productItems: productItems),
+                    brands: brands, productItems: BlocProvider.of<FavoriteCubit>(context).productItems),
                 const SizedBox(
                   height: 10,
                 ),
@@ -129,7 +88,7 @@ class HomePageViewBody extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            PopularWatchesView(items: productItems),
+                            PopularWatchesView(items: BlocProvider.of<FavoriteCubit>(context).productItems),
                       ),
                     );
                   },
@@ -145,31 +104,31 @@ class HomePageViewBody extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ItemDetailsView(
-                        item: productItems[index],
+                        item: BlocProvider.of<FavoriteCubit>(context).productItems[index],
                       ),
                     ),
                   );
                 },
                 child: BlocConsumer<FavoriteCubit, FavoriteState>(
-                  listener: (context, state) {},
+                  listener: (context, state) {
+
+                  },
                   builder: (context, state) {
                     return CustomWatchCard(
                       onTap: () {
                         BlocProvider.of<FavoriteCubit>(context)
-                            .getFavoriteItems(item: productItems[index]);
+                            .getFavoriteItems(item: BlocProvider.of<FavoriteCubit>(context).productItems[index]);
 
-                          productItems[index].isFavorite =
-                              BlocProvider.of<FavoriteCubit>(context)
-                                  .isFavorite;
+
 
                       },
                       index: index,
-                      items: productItems,
+                      items: BlocProvider.of<FavoriteCubit>(context).productItems,
                     );
                   },
                 ),
               ),
-              childCount: productItems.length,
+              childCount: BlocProvider.of<FavoriteCubit>(context).productItems.length,
             ),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,

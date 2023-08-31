@@ -41,18 +41,15 @@ class FavoriteItem extends StatelessWidget {
                 trailing: IconButton(
                   onPressed: () {
                     BlocProvider.of<FavoriteCubit>(context).getFavoriteItems(item: BlocProvider.of<FavoriteCubit>(context).favoriteItems[index]);
+
+                    print(BlocProvider.of<FavoriteCubit>(context).productItems[index].isFavorite);
                   },
-                  icon: BlocProvider.of<FavoriteCubit>(context).favoriteItems[index].isFavorite
-                      ? const Icon(
+                  icon:  const Icon(
                     FontAwesomeIcons.solidHeart,
                     color: Colors.red,
                     size: 30,
                   )
-                      : const Icon(
-                    FontAwesomeIcons.heart,
-                    color: Colors.black,
-                    size: 30,
-                  ),
+
                 ),
               ),
             ),

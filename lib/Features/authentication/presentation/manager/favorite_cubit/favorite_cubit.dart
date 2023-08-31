@@ -8,9 +8,50 @@ part 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
+  List<ProductsModel> productItems = [
+    ProductsModel(
+      image: 'assets/images/omega.png',
+      description:
+      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Omega',
+      price: 500,
+      id: 0,
+      productBrand: 'Omega',
+      isFavorite: false,
+    ),
+    ProductsModel(
+      image: 'assets/images/piaget.png',
+      description:
+      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Piaget',
+      price: 500,
+      id: 1,
+      productBrand: 'Jaeger',
+      isFavorite: false,
+    ),
+    ProductsModel(
+      image: 'assets/images/meister.png',
+      description:
+      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'meister',
+      price: 500,
+      id: 2,
+      productBrand: 'Omega',
+      isFavorite: false,
+    ),
+    ProductsModel(
+      image: 'assets/images/piaget.png',
+      description:
+      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Piaget',
+      price: 500,
+      id: 3,
+      productBrand: 'TAG',
+      isFavorite: false,
+    ),
+  ];
 
   List <ProductsModel> favoriteItems=[];
-  bool isFavorite=false;
 
 
   void getFavoriteItems({required ProductsModel item}){
@@ -18,12 +59,12 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
     if (!favoriteItems.contains(item)) {
       favoriteItems.add(item);
-      isFavorite=true;
+      item.isFavorite=true;
       emit(FavoriteSuccess());
 
     }else if(favoriteItems.contains(item)){
       favoriteItems.remove(item);
-      isFavorite=false;
+      item.isFavorite=false;
       emit(FavoriteRemove());
 
 

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:watsh_store/Features/authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/brands_model.dart';
 import 'custom_price_container.dart';
 
 class CustomWatchCard extends StatelessWidget {
-  CustomWatchCard({Key? key, required this.index, required this.items, required this.onTap})
+  const CustomWatchCard({Key? key, required this.index, required this.items, required this.onTap})
       : super(key: key);
   final int index;
   final List<ProductsModel> items;
