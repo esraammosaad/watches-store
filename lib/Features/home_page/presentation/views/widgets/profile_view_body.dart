@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:watsh_store/Features/authentication/presentation/views/sign_in_view.dart';
 import '../../../../../core/utils/styles.dart';
@@ -138,12 +139,14 @@ class ProfileViewBody extends StatelessWidget {
                 style: Styles.fontSize20.copyWith(
                   color: const Color(0xB2000000),
                 ),
-                onTap: () {
-                  Navigator.push(
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const SignInView(),
                     ),
+                    (route) => false,
                   );
                 },
               ),

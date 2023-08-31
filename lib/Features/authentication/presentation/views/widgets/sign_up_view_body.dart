@@ -1,3 +1,5 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
@@ -85,14 +87,45 @@ class SignUpViewBody extends StatelessWidget {
                         ),
                         CustomButton(
                           text: "sign Up",
-                          onTap: () {
+                          onTap: () async {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomePageView(),
-                                ),
-                              );
+                              try {
+                                final credential = await FirebaseAuth.instance
+                                    .createUserWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomePageView(),
+                                  ),
+                                );
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'weak-password') {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.error,
+                                    animType: AnimType.rightSlide,
+                                    title: 'Error',
+                                    desc: 'The password provided is too weak.',
+                                  ).show();
+                                  print('The password provided is too weak.');
+                                } else if (e.code == 'email-already-in-use') {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.error,
+                                    animType: AnimType.rightSlide,
+                                    title: 'Error',
+                                    desc:
+                                        'The account already exists for that email.',
+                                  ).show();
+                                  print(
+                                      'The account already exists for that email.');
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
                             }
                           },
                         )

@@ -1,15 +1,49 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
 import '../../../../../core/utils/widgets/custom_text_form_field.dart';
 import '../../../../home_page/presentation/views/home_page_view.dart';
 import '../sign_up_view.dart';
 
-class SignInViewBody extends StatelessWidget {
-  SignInViewBody({Key? key}) : super(key: key);
+class SignInViewBody extends StatefulWidget {
+  const SignInViewBody({Key? key}) : super(key: key);
+
+  @override
+  State<SignInViewBody> createState() => _SignInViewBodyState();
+}
+
+class _SignInViewBodyState extends State<SignInViewBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController passwordController = TextEditingController();
+
   TextEditingController emailController = TextEditingController();
+
+  Future signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    await FirebaseAuth.instance.signInWithCredential(credential);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => HomePageView(),
+        ),
+        (route) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +97,41 @@ class SignInViewBody extends StatelessWidget {
                       ),
                       CustomButton(
                         text: "sign in",
-                        onTap: () {
+                        onTap: () async {
                           if (_formKey.currentState!.validate()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomePageView(),
-                              ),
-                            );
+                            try {
+                              final credential = await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                      email: emailController.text,
+                                      password: passwordController.text);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePageView(),
+                                ),
+                              );
+                            } on FirebaseAuthException catch (e) {
+                              if (e.code == 'user-not-found') {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.error,
+                                  animType: AnimType.rightSlide,
+                                  title: 'Error',
+                                  desc: 'No user found for that email.',
+                                ).show();
+                                print('No user found for that email.');
+                              } else if (e.code == 'wrong-password') {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.error,
+                                  animType: AnimType.rightSlide,
+                                  title: 'Error',
+                                  desc:
+                                      'Wrong password provided for that user.',
+                                ).show();
+                                print('Wrong password provided for that user.');
+                              }
+                            }
                           }
                         },
                       )
@@ -84,7 +145,12 @@ class SignInViewBody extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image.asset("assets/images/google.png"),
+                      GestureDetector(
+                        child: Image.asset("assets/images/google.png"),
+                        onTap: () {
+                          signInWithGoogle();
+                        },
+                      ),
                       Image.asset("assets/images/facebook.png"),
                       Image.asset("assets/images/gmail.png"),
                     ],
