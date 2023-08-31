@@ -109,10 +109,8 @@ class HomePageViewBody extends StatelessWidget {
                     ),
                   );
                 },
-                child: BlocConsumer<FavoriteCubit, FavoriteState>(
-                  listener: (context, state) {
+                child: BlocBuilder<FavoriteCubit, FavoriteState>(
 
-                  },
                   builder: (context, state) {
                     return CustomWatchCard(
                       onTap: () {
