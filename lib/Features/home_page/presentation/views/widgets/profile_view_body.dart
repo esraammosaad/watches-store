@@ -59,12 +59,17 @@ class ProfileViewBody extends StatelessWidget {
                   ),
                   subtitle: Column(
                     children: [
-                      Text(
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        'Rebprt22@gamil.com',
-                        style: Styles.fontSize18
-                            .copyWith(color: const Color(0x80000000)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            'Rebprt22@gamil.com',
+                            style: Styles.fontSize18
+                                .copyWith(color: const Color(0x80000000)),
+                          ),
+                        ],
                       ),
                       const SizedBox(
                         height: 5,
