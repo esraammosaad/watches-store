@@ -122,7 +122,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const PopularWatchesView(),
+                        builder: (context) =>  PopularWatchesView(items:productItems ),
                       ),
                     );
                   },

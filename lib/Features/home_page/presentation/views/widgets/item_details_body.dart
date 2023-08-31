@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../constents.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_cart_button.dart';
 import '../../../../../core/utils/widgets/custom_rating_bar.dart';
@@ -15,7 +16,6 @@ class ItemDetailsBody extends StatelessWidget {
 
   final ProductsModel item;
 
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -25,17 +25,21 @@ class ItemDetailsBody extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 16.0, left: 8, right: 16),
-              child: CustomTitle(text: item.productName!,onPressed: () {
-                Navigator.pop(context);
-              },),
+              child: CustomTitle(
+                text: item.productName!,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             AddOrRemoveItem(item: item),
             const SizedBox(
-              height: 80,
+              height: 50,
             ),
             Container(
-              height: 400,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(32),
@@ -75,12 +79,27 @@ class ItemDetailsBody extends StatelessWidget {
                       containerColor: const Color(0xB2FFFFFF),
                       textColor: Colors.black,
                       onTap: () {
-                        buildShowModalBottomSheet(context: context,text: "Added To cart",buttonText: 'See Cart',onTap: (){Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CartView(),
-                          ),
-                        );});
+                        if (!cartItems.contains(item)) {
+                          cartItems.add(item);
+                          totalPrice = totalPrice + item.price!;
+                        }
+
+
+
+                        buildShowModalBottomSheet(
+                            context: context,
+                            text: "Added To cart",
+                            buttonText: 'See Cart',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CartView(
+                                    items: cartItems,
+                                  ),
+                                ),
+                              );
+                            });
                       },
                       text: "+ Add to Cart",
                     )

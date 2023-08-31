@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/cart_view.dart';
 
+import '../../../../../constents.dart';
+
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
@@ -23,7 +25,7 @@ class CustomAppBar extends StatelessWidget {
             ),
             GestureDetector(onTap: (){
 
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const CartView()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> CartView(items:cartItems,)));
             },
                 child: Image.asset('assets/icons/cart.png', height: 30)),
           ],

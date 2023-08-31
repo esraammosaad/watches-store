@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../data/models/brands_model.dart';
 
 class CustomCartBody extends StatefulWidget {
-  const CustomCartBody({
+   CustomCartBody({
     super.key,
+     required this.items,
+     required this.index
   });
+  List <ProductsModel> items;
+  int index;
 
   @override
   State<CustomCartBody> createState() => _CustomCartBodyState();
@@ -48,7 +53,7 @@ class _CustomCartBodyState extends State<CustomCartBody> {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Image.asset(
                 //fit: BoxFit.fill,
-                'assets/images/piaget.png',
+                widget.items[widget.index].image,
               ),
             ),
             Expanded(
@@ -59,11 +64,12 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Piaget Polo Date watch",
+                      widget.items[widget.index].description!,
                       style: Styles.fontSize20.copyWith(
                         color: Colors.black,
                       ),
-                      maxLines: 3,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(
                       height: 8,
@@ -76,12 +82,12 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                             color: Colors.black.withOpacity(0.5),
                           ),
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
+                        child:  Padding(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 37),
                           child: Text(
-                            "500\$",
-                            style: TextStyle(
+                            widget.items[widget.index].price.toString()+r'$',
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),

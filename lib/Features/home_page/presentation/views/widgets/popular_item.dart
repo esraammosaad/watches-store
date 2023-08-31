@@ -1,96 +1,78 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:watsh_store/Features/home_page/data/models/brands_model.dart';
+import 'package:watsh_store/core/utils/widgets/custom_rating_bar.dart';
 import '../../../../../core/utils/styles.dart';
+import 'cusstom_container.dart';
 
 class PopularItem extends StatelessWidget {
-  const PopularItem({Key? key}) : super(key: key);
+  const PopularItem(
+      {Key? key, required this.item, required this.onTap, required this.index})
+      : super(key: key);
+  final List<ProductsModel> item;
+  final VoidCallback onTap;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
-      child: Container(
-        width: 430,
-        height: 173,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(17),
-          border: Border.all(
-            color: Colors.black,
-            width: 1,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: 430,
+          height: 173,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(17),
+            border: Border.all(
+              color: Colors.black,
+              width: 1,
+            ),
           ),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.asset(
-                'assets/images/watch.png',
-                width: 170,
-                height: 186,
-              ),
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      " LYMFHCH Men's Analog Sports Watch, LED .",
-                      style: Styles.fontSize14.copyWith(
-                        color: Colors.black,
-                      ),
-                      maxLines: 3,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    RatingBar.builder(
-                      initialRating: 4,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemSize: 20,
-                      unratedColor: const Color(0x1B1B1BB2),
-                      itemPadding: const EdgeInsets.only(right: 2.0),
-                      itemBuilder: (context, _) => const FaIcon(
-                          FontAwesomeIcons.solidStar,
-                          color: Color(0xffFFD233)),
-                      onRatingUpdate: (rating) {
-                        //print(rating);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 17,
-                    ),
-                    Container(
-                      padding:
-                          const EdgeInsets.only(left: 10, top: 8, right: 8),
-                      height: 44,
-                      width: 102,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(18),
-                        border: Border.all(color: Colors.black),
-                      ),
-                      child: Text(
-                        r"392.99$",
-                        style: Styles.fontSize20.copyWith(color: Colors.black),
-                      ),
-                    ),
-                  ],
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image.asset(
+                  item[index].image,
+                  width: 170,
+                  height: 186,
                 ),
               ),
-            )
-          ],
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item[index].description!,
+                        overflow: TextOverflow.ellipsis,
+                        style: Styles.fontSize14.copyWith(
+                          color: Colors.black,
+                        ),
+                        maxLines: 2,
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      const CustomRatingBar(),
+                      const SizedBox(
+                        height: 17,
+                      ),
+                      CustomPriceContainer(price: item[index].price!),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

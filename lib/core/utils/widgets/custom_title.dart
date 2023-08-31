@@ -26,7 +26,7 @@ class CustomTitle extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: Styles.fontSize32.copyWith(color: Colors.black),
+              style: Styles.fontSize24.copyWith(color: Colors.black),
             ),
           ),
         ),

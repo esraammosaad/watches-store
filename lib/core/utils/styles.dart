@@ -58,6 +58,11 @@ BoxDecoration buildBoxDecorationColor() {
 Future<void> buildShowModalBottomSheet(
     {required BuildContext context, required String text, required String buttonText, required VoidCallback onTap}) {
   return showModalBottomSheet<void>(
+    shape: const OutlineInputBorder(borderRadius:BorderRadius.only(
+      topRight: Radius.circular(32),
+      topLeft: Radius.circular(32),
+
+    ) ),
     context: context,
 
     builder: (BuildContext context) {
