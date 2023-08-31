@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watsh_store/Features/authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/home_page_view.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
@@ -6,6 +8,7 @@ import 'favorite_item.dart';
 
 class FavoriteViewBody extends StatelessWidget {
   const FavoriteViewBody({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,16 @@ class FavoriteViewBody extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => const FavoriteItem(),
-                itemCount: 3,
+              child: BlocBuilder<FavoriteCubit, FavoriteState>(
+                builder: (context, state) {
+                  return ListView.builder(
+                    itemBuilder: (context, index) => FavoriteItem(index: index),
+                    itemCount: BlocProvider
+                        .of<FavoriteCubit>(context)
+                        .favoriteItems
+                        .length,
+                  );
+                },
               ),
             )
           ],

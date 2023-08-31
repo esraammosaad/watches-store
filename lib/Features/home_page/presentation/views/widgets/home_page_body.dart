@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watsh_store/Features/authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/item_details_view.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/custom_watch_card.dart';
 import '../../../../../core/utils/styles.dart';
@@ -9,30 +11,29 @@ import '../popular_watches_view.dart';
 import 'custom_brands_list_view.dart';
 import 'custom_flexiable_bar.dart';
 
-class HomePageViewBody extends StatefulWidget {
-  const HomePageViewBody({Key? key}) : super(key: key);
+class HomePageViewBody extends StatelessWidget {
+  HomePageViewBody({super.key});
 
-  @override
-  State<HomePageViewBody> createState() => _HomePageViewBodyState();
-}
 
-class _HomePageViewBodyState extends State<HomePageViewBody> {
   PageController controller = PageController();
   List<ProductsModel> brands = [
     ProductsModel(
       image: 'assets/images/omega.png',
       productBrand: 'Omega',
       id: 0,
+      isFavorite: false,
     ),
     ProductsModel(
       image: 'assets/images/tag.png',
       productBrand: 'TAG',
       id: 1,
+      isFavorite: false,
     ),
     ProductsModel(
       image: 'assets/images/jaeger.png',
       productBrand: 'Jaeger',
       id: 2,
+      isFavorite: false,
     ),
   ];
   List<ProductsModel> productItems = [
@@ -44,6 +45,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
       price: 500,
       id: 0,
       productBrand: 'Omega',
+      isFavorite: false,
     ),
     ProductsModel(
       image: 'assets/images/piaget.png',
@@ -53,6 +55,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
       price: 500,
       id: 1,
       productBrand: 'Jaeger',
+      isFavorite: false,
     ),
     ProductsModel(
       image: 'assets/images/meister.png',
@@ -62,6 +65,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
       price: 500,
       id: 2,
       productBrand: 'Omega',
+      isFavorite: false,
     ),
     ProductsModel(
       image: 'assets/images/piaget.png',
@@ -71,9 +75,11 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
       price: 500,
       id: 3,
       productBrand: 'TAG',
+      isFavorite: false,
     ),
   ];
   String? brandName;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +128,8 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  PopularWatchesView(items:productItems ),
+                        builder: (context) =>
+                            PopularWatchesView(items: productItems),
                       ),
                     );
                   },
@@ -143,9 +150,23 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                     ),
                   );
                 },
-                child: CustomWatchCard(
-                  index: index,
-                  items: productItems,
+                child: BlocConsumer<FavoriteCubit, FavoriteState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    return CustomWatchCard(
+                      onTap: () {
+                        BlocProvider.of<FavoriteCubit>(context)
+                            .getFavoriteItems(item: productItems[index]);
+
+                          productItems[index].isFavorite =
+                              BlocProvider.of<FavoriteCubit>(context)
+                                  .isFavorite;
+
+                      },
+                      index: index,
+                      items: productItems,
+                    );
+                  },
                 ),
               ),
               childCount: productItems.length,

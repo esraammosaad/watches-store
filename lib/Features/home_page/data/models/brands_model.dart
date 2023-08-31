@@ -5,7 +5,7 @@ class ProductsModel {
   final double? price;
   final String? description;
   final double? rating;
-  final bool? isFavorite;
+    bool isFavorite;
   final int id;
 
   ProductsModel(
@@ -14,11 +14,12 @@ class ProductsModel {
       this.productName,
       this.rating,
       required this.id,
-      this.isFavorite = false,
+      required this.isFavorite ,
       this.description,
       required this.productBrand});
 
   factory ProductsModel.fromJson(dynamic json) => ProductsModel(
+    isFavorite: json['isFavorite'],
         image: json['image'],
         price: json['price'],
         productName: json['productName'],
@@ -35,6 +36,7 @@ class ProductsModel {
         'rating': rating,
         'id': id,
         'description': description,
-        'productBrand': productBrand
+        'productBrand': productBrand,
+    'isFavorite':isFavorite,
       };
 }

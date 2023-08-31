@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watsh_store/Features/authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/profile_view.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/custom_nav_bar.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/home_page_body.dart';
@@ -29,10 +31,10 @@ class _HomePageViewState extends State<HomePageView> {
 
           });
         },
-        children: const [
+        children:  [
           HomePageViewBody(),
-          FavoriteView(),
-          ProfileView()],
+          const FavoriteView(),
+          const ProfileView()],
      ),
       bottomNavigationBar: CustomNavBar(
           onTap: (index) {
