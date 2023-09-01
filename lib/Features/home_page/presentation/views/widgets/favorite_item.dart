@@ -60,9 +60,7 @@ class FavoriteItem extends StatelessWidget {
                                 item: BlocProvider.of<FavoriteCubit>(context)
                                     .favoriteItems[index]);
 
-                        print(BlocProvider.of<FavoriteCubit>(context)
-                            .productItems[index]
-                            .isFavorite);
+
                       },
                       icon: const Icon(
                         FontAwesomeIcons.solidHeart,

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/item_details_view.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/custom_watch_card.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../data/models/brands_model.dart';
 import '../../manager/favorite_cubit/favorite_cubit.dart';
+import '../../manager/home_cubit/home_cubit.dart';
 import '../all_brands_view.dart';
 import '../../../../../core/utils/widgets/custom_category_bar.dart';
 import '../popular_watches_view.dart';
@@ -12,32 +12,10 @@ import 'custom_brands_list_view.dart';
 import 'custom_flexiable_bar.dart';
 
 class HomePageViewBody extends StatelessWidget {
-  HomePageViewBody({super.key});
+  const HomePageViewBody({super.key});
 
-  PageController controller = PageController();
-  List<ProductsModel> brands = [
-    ProductsModel(
-      image: 'assets/images/omega.png',
-      productBrand: 'Omega',
-      id: 0,
-      isFavorite: false,
-    ),
-    ProductsModel(
-      image: 'assets/images/tag.png',
-      productBrand: 'TAG',
-      id: 1,
-      isFavorite: false,
-    ),
-    ProductsModel(
-      image: 'assets/images/jaeger.png',
-      productBrand: 'Jaeger',
-      id: 2,
-      isFavorite: false,
-    ),
-  ];
 
-  String? brandName;
-  int selectedIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +29,7 @@ class HomePageViewBody extends StatelessWidget {
             elevation: 0,
             expandedHeight: 370,
             automaticallyImplyLeading: false,
-            flexibleSpace: FlexibleBar(controller: controller),
+            flexibleSpace: FlexibleBar(controller: BlocProvider.of<HomeCubit>(context).controller),
           ),
           SliverToBoxAdapter(
             child: Column(
@@ -64,9 +42,7 @@ class HomePageViewBody extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => AllBrandsView(
-                          brands: brands,
-                          productItems: BlocProvider.of<FavoriteCubit>(context)
-                              .productItems,
+
                         ),
                       ),
                     );
@@ -76,9 +52,9 @@ class HomePageViewBody extends StatelessWidget {
                   height: 8,
                 ),
                 CustomBrandsListView(
-                    brands: brands,
+                    brands: BlocProvider.of<HomeCubit>(context).brands,
                     productItems:
-                        BlocProvider.of<FavoriteCubit>(context).productItems),
+                        BlocProvider.of<HomeCubit>(context).productItems),
                 const SizedBox(
                   height: 10,
                 ),
@@ -90,7 +66,7 @@ class HomePageViewBody extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => PopularWatchesView(
-                            items: BlocProvider.of<FavoriteCubit>(context)
+                            items: BlocProvider.of<HomeCubit>(context)
                                 .productItems),
                       ),
                     );
@@ -107,7 +83,7 @@ class HomePageViewBody extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ItemDetailsView(
-                        item: BlocProvider.of<FavoriteCubit>(context)
+                        item: BlocProvider.of<HomeCubit>(context)
                             .productItems[index],
                       ),
                     ),
@@ -119,18 +95,18 @@ class HomePageViewBody extends StatelessWidget {
                       onTap: () {
                         BlocProvider.of<FavoriteCubit>(context)
                             .getFavoriteItems(
-                                item: BlocProvider.of<FavoriteCubit>(context)
+                                item: BlocProvider.of<HomeCubit>(context)
                                     .productItems[index]);
                       },
                       index: index,
                       items:
-                          BlocProvider.of<FavoriteCubit>(context).productItems,
+                          BlocProvider.of<HomeCubit>(context).productItems,
                     );
                   },
                 ),
               ),
               childCount:
-                  BlocProvider.of<FavoriteCubit>(context).productItems.length,
+                  BlocProvider.of<HomeCubit>(context).productItems.length,
             ),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,

@@ -10,11 +10,12 @@ class CustomTextFormField extends StatelessWidget {
       required this.obscureText,
       required this.onChanged,
       required this.controller,
-      required this.textInputAction});
+      required this.textInputAction,  });
 
   final String text;
   final String? imgPath;
   final TextInputAction? textInputAction;
+
 
   final bool obscureText;
   final TextInputType? keyboardType;

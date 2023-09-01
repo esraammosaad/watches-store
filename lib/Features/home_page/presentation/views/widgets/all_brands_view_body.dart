@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
 import '../../../data/models/brands_model.dart';
+import '../../manager/home_cubit/home_cubit.dart';
 import '../brand_items_view.dart';
 import 'custom_brand_item.dart';
 
 class AllBrandsViewBody extends StatelessWidget {
   const AllBrandsViewBody(
-      {Key? key, required this.brands, required this.productItems})
+      {Key? key, })
       : super(key: key);
-  final List<ProductsModel> brands;
-  final List<ProductsModel> productItems;
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,38 +35,41 @@ class AllBrandsViewBody extends StatelessWidget {
               ),
               Expanded(
                 child: GridView.builder(
-                  itemCount: brands.length,
+                  itemCount: BlocProvider.of<HomeCubit>(context).brands.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 3,
                       mainAxisSpacing: 20),
                   itemBuilder: (context, index) => CustomBrandItem(
                     index: index,
-                    brands: brands,
                     onTap: () {
-                      List<ProductsModel> brandItems = [];
-                      for (int i = 0; i < productItems.length; i++) {
-                        if (brands[index].productBrand ==
-                            productItems[i].productBrand) {
-                          brandItems.add(productItems[i]);
-                        }
-                      }
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BrandItemsView(
-                            brandItem: brandItems,
-                            brandName: brands[index].productBrand,
-                          ),
-                        ),
-                      );
+                      showBrandItems(context, index);
                     },
                   ),
                 ),
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  void showBrandItems(BuildContext context, int index) {
+    List<ProductsModel> brandItems = [];
+    for (int i = 0; i < BlocProvider.of<HomeCubit>(context).productItems.length; i++) {
+      if (BlocProvider.of<HomeCubit>(context).brands[index].productBrand ==
+          BlocProvider.of<HomeCubit>(context).productItems[i].productBrand) {
+        brandItems.add(BlocProvider.of<HomeCubit>(context).productItems[i]);
+      }
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BrandItemsView(
+          brandItem: brandItems,
+          brandName: BlocProvider.of<HomeCubit>(context).brands[index].productBrand,
         ),
       ),
     );

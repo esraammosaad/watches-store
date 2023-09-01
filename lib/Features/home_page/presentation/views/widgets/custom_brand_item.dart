@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../data/models/brands_model.dart';
+import '../../manager/home_cubit/home_cubit.dart';
 
 class CustomBrandItem extends StatelessWidget {
-  CustomBrandItem(
+ const CustomBrandItem(
       {Key? key,
       required this.index,
-      required this.brands,
+
       required this.onTap})
       : super(key: key);
-  int index;
-  List<ProductsModel> brands;
-  VoidCallback onTap;
+  final int index;
+
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class CustomBrandItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
                 child: Image.asset(
-                  brands[index].image,
+                  BlocProvider.of<HomeCubit>(context).brands[index].image,
                   width: 130,
                   height: 105,
                 ),
@@ -53,7 +54,7 @@ class CustomBrandItem extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  brands[index].productBrand,
+                  BlocProvider.of<HomeCubit>(context).brands[index].productBrand,
                   style: Styles.fontSize16.copyWith(
                       color: const Color(0xB2000000),
                       fontWeight: FontWeight.bold),

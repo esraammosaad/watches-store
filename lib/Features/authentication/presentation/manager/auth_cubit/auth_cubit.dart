@@ -12,7 +12,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> registerUser(
       {required String email, required String password}) async {
     try {
-      final credential = await FirebaseAuth.instance
+       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthFailure(dialogType: DialogType.error, title: 'Error', desc:'The account already exists for that email.'));
       }
     } catch (e) {
-      print(e);
+
     }
   }
 

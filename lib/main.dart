@@ -7,6 +7,7 @@ import 'Features/authentication/presentation/manager/auth_cubit/auth_cubit.dart'
 import 'Features/authentication/presentation/views/splash_view.dart';
 import 'Features/home_page/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'Features/home_page/presentation/manager/favorite_cubit/favorite_cubit.dart';
+import 'Features/home_page/presentation/manager/home_cubit/home_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => FavoriteCubit(),
         ),
+        BlocProvider(
+          create: (context) => HomeCubit(),
+        ),
       ],
 
       child: MaterialApp(
@@ -42,7 +46,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           useMaterial3: true,
         ),
-        home: (FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified)? HomePageView() :SplashView() ,
+        home: (FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified)? const HomePageView() :const SplashView() ,
       ),
     );
   }
