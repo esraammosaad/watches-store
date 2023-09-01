@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../authentication/presentation/manager/cart_cubit/cart_cubit.dart';
-import '../../../data/models/brands_model.dart';
+import '../../manager/cart_cubit/cart_cubit.dart';
 
 class CustomCartBody extends StatefulWidget {
-   CustomCartBody({
-    super.key,
-
-     required this.index
-  });
+  CustomCartBody({super.key, required this.index});
 
   int index;
 
@@ -55,7 +50,9 @@ class _CustomCartBodyState extends State<CustomCartBody> {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Image.asset(
                 //fit: BoxFit.fill,
-               BlocProvider.of<CartCubit>(context).cartItems[widget.index].image,
+                BlocProvider.of<CartCubit>(context)
+                    .cartItems[widget.index]
+                    .image,
               ),
             ),
             Expanded(
@@ -66,7 +63,9 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      BlocProvider.of<CartCubit>(context).cartItems[widget.index].description!,
+                      BlocProvider.of<CartCubit>(context)
+                          .cartItems[widget.index]
+                          .description!,
                       style: Styles.fontSize20.copyWith(
                         color: Colors.black,
                       ),
@@ -84,11 +83,15 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                             color: Colors.black.withOpacity(0.5),
                           ),
                         ),
-                        child:  Padding(
+                        child: Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 37),
                           child: Text(
-                            BlocProvider.of<CartCubit>(context).cartItems[widget.index].price.toString()+r'$',
+                            BlocProvider.of<CartCubit>(context)
+                                    .cartItems[widget.index]
+                                    .price
+                                    .toString() +
+                                r'$',
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),

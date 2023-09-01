@@ -1,9 +1,8 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../home_page/data/models/brands_model.dart';
+
 part 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
@@ -12,7 +11,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     ProductsModel(
       image: 'assets/images/omega.png',
       description:
-      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
       productName: 'Omega',
       price: 500,
       id: 0,
@@ -22,7 +21,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     ProductsModel(
       image: 'assets/images/piaget.png',
       description:
-      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
       productName: 'Piaget',
       price: 500,
       id: 1,
@@ -32,7 +31,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     ProductsModel(
       image: 'assets/images/meister.png',
       description:
-      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
       productName: 'meister',
       price: 500,
       id: 2,
@@ -42,7 +41,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     ProductsModel(
       image: 'assets/images/piaget.png',
       description:
-      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
       productName: 'Piaget',
       price: 500,
       id: 3,
@@ -51,27 +50,19 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     ),
   ];
 
-  List <ProductsModel> favoriteItems=[];
+  List<ProductsModel> favoriteItems = [];
 
-
-  void getFavoriteItems({required ProductsModel item}){
+  void getFavoriteItems({required ProductsModel item}) {
     emit(FavoriteLoading());
 
     if (!favoriteItems.contains(item)) {
       favoriteItems.add(item);
-      item.isFavorite=true;
+      item.isFavorite = true;
       emit(FavoriteSuccess());
-
-    }else if(favoriteItems.contains(item)){
+    } else if (favoriteItems.contains(item)) {
       favoriteItems.remove(item);
-      item.isFavorite=false;
+      item.isFavorite = false;
       emit(FavoriteRemove());
-
-
     }
-
-
-
-
   }
 }

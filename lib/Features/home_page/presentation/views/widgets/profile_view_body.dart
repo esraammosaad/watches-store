@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watsh_store/Features/authentication/presentation/views/sign_in_view.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
+import '../../manager/cart_cubit/cart_cubit.dart';
 import '../home_page_view.dart';
 import 'custom_card.dart';
 
@@ -145,6 +147,7 @@ class ProfileViewBody extends StatelessWidget {
                   color: const Color(0xB2000000),
                 ),
                 onTap: () async {
+                  BlocProvider.of<CartCubit>(context).reset();
                   await FirebaseAuth.instance.signOut();
                   Navigator.pushAndRemoveUntil(
                     context,

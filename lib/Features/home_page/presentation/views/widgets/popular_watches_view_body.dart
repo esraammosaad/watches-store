@@ -6,8 +6,9 @@ import 'package:watsh_store/core/utils/widgets/custom_title.dart';
 import '../../../../../core/utils/styles.dart';
 
 class PopularWatchesViewBody extends StatelessWidget {
-  const PopularWatchesViewBody({Key? key, required this.items}) : super(key: key);
- final List<ProductsModel> items;
+  const PopularWatchesViewBody({Key? key, required this.items})
+      : super(key: key);
+  final List<ProductsModel> items;
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +17,32 @@ class PopularWatchesViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Padding(
+          Padding(
             padding:
                 const EdgeInsets.only(top: 16.0, left: 8, right: 16, bottom: 8),
             child: CustomTitle(
-              text: 'Popular Watches',onPressed: () {
-              Navigator.pop(context);
-            },
+              text: 'Popular Watches',
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ),
           Expanded(
             child: ListView.builder(
-              itemBuilder: (context, index) =>  PopularItem(index: index,item: items, onTap: () { Navigator.push(context, MaterialPageRoute(builder: (context)=>ItemDetailsView(item: items[index]))); }, ),
+              itemBuilder: (context, index) => PopularItem(
+                index: index,
+                item: items,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ItemDetailsView(
+                        item: items[index],
+                      ),
+                    ),
+                  );
+                },
+              ),
               itemCount: items.length,
             ),
           )

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:watsh_store/Features/authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/profile_view.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/custom_nav_bar.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/home_page_body.dart';
@@ -15,27 +13,25 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
-  PageController? pageController =PageController();
+  PageController? pageController = PageController();
 
   int selectedIndex = 0;
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        controller:pageController ,
-        onPageChanged: (index){
-          selectedIndex=index;
-          setState(() {
-
-          });
+        controller: pageController,
+        onPageChanged: (index) {
+          selectedIndex = index;
+          setState(() {});
         },
-        children:  [
+        children: [
           HomePageViewBody(),
           const FavoriteView(),
-          const ProfileView()],
-     ),
+          const ProfileView()
+        ],
+      ),
       bottomNavigationBar: CustomNavBar(
           onTap: (index) {
             pageController!.jumpToPage(index);

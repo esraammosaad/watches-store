@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:watsh_store/Features/authentication/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/home_page_view.dart';
 import 'Features/authentication/presentation/manager/auth_cubit/auth_cubit.dart';
-import 'Features/authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'Features/authentication/presentation/views/splash_view.dart';
+import 'Features/home_page/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'Features/home_page/presentation/manager/favorite_cubit/favorite_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           useMaterial3: true,
         ),
-        home: FirebaseAuth.instance.currentUser == null? SplashView() : HomePageView(),
+        home: (FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified)? HomePageView() :SplashView() ,
       ),
     );
   }

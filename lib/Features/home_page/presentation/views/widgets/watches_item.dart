@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import '../../../data/models/brands_model.dart';
+import '../../manager/favorite_cubit/favorite_cubit.dart';
 import 'custom_price_container.dart';
 
 class WatchesItem extends StatelessWidget {
@@ -31,22 +31,21 @@ class WatchesItem extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     BlocProvider.of<FavoriteCubit>(context)
-                        .getFavoriteItems(
-                        item: items[index]);
+                        .getFavoriteItems(item: items[index]);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5.0, right: 5),
                     child: items[index].isFavorite
                         ? const Icon(
-                      FontAwesomeIcons.solidHeart,
-                      color: Colors.red,
-                      size: 30,
-                    )
+                            FontAwesomeIcons.solidHeart,
+                            color: Colors.red,
+                            size: 30,
+                          )
                         : const Icon(
-                      FontAwesomeIcons.heart,
-                      color: Colors.black,
-                      size: 30,
-                    ),
+                            FontAwesomeIcons.heart,
+                            color: Colors.black,
+                            size: 30,
+                          ),
                   ),
                 )
               ],

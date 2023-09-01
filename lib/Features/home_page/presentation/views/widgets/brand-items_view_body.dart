@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/watches_item.dart';
 import 'package:watsh_store/core/utils/widgets/custom_title.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../authentication/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import '../../../data/models/brands_model.dart';
+import '../../manager/favorite_cubit/favorite_cubit.dart';
 import '../item_details_view.dart';
 
 class BrandItemsViewBody extends StatelessWidget {
@@ -39,28 +39,27 @@ class BrandItemsViewBody extends StatelessWidget {
                   builder: (context, state) {
                     return GridView.builder(
                       itemCount: brandItems.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 0,
-                          mainAxisSpacing: 0),
-                      itemBuilder: (context, index) =>
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      ItemDetailsView(
-                                        item: brandItems[index],
-                                      ),
-                                ),
-                              );
-                            },
-                            child: WatchesItem(
-                                index: index,
-                                items: brandItems,
-                                ),
-                          ),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 0,
+                              mainAxisSpacing: 0),
+                      itemBuilder: (context, index) => GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ItemDetailsView(
+                                item: brandItems[index],
+                              ),
+                            ),
+                          );
+                        },
+                        child: WatchesItem(
+                          index: index,
+                          items: brandItems,
+                        ),
+                      ),
                     );
                   },
                 ),
