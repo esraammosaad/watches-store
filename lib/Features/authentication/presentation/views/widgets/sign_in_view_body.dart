@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
@@ -17,11 +18,27 @@ class SignInViewBody extends StatefulWidget {
 
 class _SignInViewBodyState extends State<SignInViewBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+// final FirebaseAuth _auth = FirebaseAuth.instance;
+// final GoogleSignIn _googleSignIn = GoogleSignIn();
   TextEditingController passwordController = TextEditingController();
 
   TextEditingController emailController = TextEditingController();
 
+  Future signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+    // Once signed in, return the UserCredential
+     FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => HomePageView(),
+        ),
+            (route) => false);
+  }
   Future signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -151,7 +168,11 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                           signInWithGoogle();
                         },
                       ),
-                      Image.asset("assets/images/facebook.png"),
+                      GestureDetector(
+                        onTap: () {
+                          signInWithFacebook();
+                        },
+                          child: Image.asset("assets/images/facebook.png")),
                       Image.asset("assets/images/gmail.png"),
                     ],
                   ),
@@ -187,4 +208,12 @@ class _SignInViewBodyState extends State<SignInViewBody> {
       ),
     );
   }
+
+  // Future<void> signInWithGoogle() async {
+  //   GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+  //   GoogleSignInAuthentication googleSignInAuthentication =await googleSignInAccount!.authentication;
+  //   AuthCredential authCredential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken);
+  //   await _auth.signInWithCredential(authCredential);
+  //
+  // }
 }

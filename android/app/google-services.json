@@ -7,14 +7,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:395411468949:android:f2ed46e2fc0acb7ee7e19c",
+        "mobilesdk_app_id": "1:395411468949:android:967d3beaa635dc93e7e19c",
         "android_client_info": {
           "package_name": "com.example.watsh_store"
         }
       },
       "oauth_client": [
         {
-          "client_id": "395411468949-lbb5a56fdr6oen39uhrndlpatnggnr54.apps.googleusercontent.com",
+          "client_id": "395411468949-e5eiinpujeka5hq4vtji22v9ja88k3gu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.watsh_store",
+            "certificate_hash": "1899aebd8b258947e8bfcf593f00dbb809a345f6"
+          }
+        },
+        {
+          "client_id": "395411468949-1tsn6asomlsqjnp04mlm5830lt2pfqev.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "395411468949-lbb5a56fdr6oen39uhrndlpatnggnr54.apps.googleusercontent.com",
+              "client_id": "395411468949-1tsn6asomlsqjnp04mlm5830lt2pfqev.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
