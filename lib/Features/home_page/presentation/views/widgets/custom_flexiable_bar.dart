@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/search_view.dart';
 import 'package:watsh_store/Features/home_page/presentation/views/widgets/page_indicator.dart';
@@ -7,12 +8,13 @@ import 'custom_page_view.dart';
 import 'custom_search_bar.dart';
 
 class FlexibleBar extends StatelessWidget {
-  const FlexibleBar({
+  FlexibleBar({
     super.key,
     required this.controller,
   });
 
   final PageController controller;
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,9 @@ class FlexibleBar extends StatelessWidget {
                 ),
               ),
               Text(
-                'Rebprt Nicklas',
+                '${user!.email}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: Styles.fontSize24.copyWith(
                   color: Colors.black,
                 ),
@@ -46,9 +50,18 @@ class FlexibleBar extends StatelessWidget {
               ),
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 4,
-                    child: CustomSearchBar(),
+                    child: CustomSearchBar(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SearchView(),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   Expanded(
                     child: GestureDetector(

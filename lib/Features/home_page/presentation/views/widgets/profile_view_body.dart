@@ -9,7 +9,8 @@ import '../home_page_view.dart';
 import 'custom_card.dart';
 
 class ProfileViewBody extends StatelessWidget {
-  const ProfileViewBody({Key? key}) : super(key: key);
+  ProfileViewBody({Key? key}) : super(key: key);
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -62,17 +63,12 @@ class ProfileViewBody extends StatelessWidget {
                   ),
                   subtitle: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            'Rebprt22@gamil.com',
-                            style: Styles.fontSize18
-                                .copyWith(color: const Color(0x80000000)),
-                          ),
-                        ],
+                      Text(
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        '${user!.email}',
+                        style: Styles.fontSize18
+                            .copyWith(color: const Color(0x80000000)),
                       ),
                       const SizedBox(
                         height: 5,

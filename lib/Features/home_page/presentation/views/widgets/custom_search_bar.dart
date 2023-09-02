@@ -4,19 +4,26 @@ import '../../../../../core/utils/widgets/custom_text_field.dart';
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     super.key,
+    this.onTap,
+    this.enabled,
   });
+
+  final void Function()? onTap;
+  final bool? enabled;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
         Expanded(
           child: SizedBox(
             height: 45,
-            child: CustomTextField(),
+            child: CustomTextField(
+              onTap: onTap,
+            ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
       ],

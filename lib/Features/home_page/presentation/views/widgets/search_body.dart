@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watsh_store/core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
+import '../../manager/home_cubit/home_cubit.dart';
 import 'custom_search_bar.dart';
 import 'custom_search_item.dart';
 
@@ -10,6 +11,7 @@ class SearchBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final item = BlocProvider.of<HomeCubit>(context).productItems;
     return SafeArea(
       child: Container(
         decoration: buildBoxDecorationColor(),
@@ -65,9 +67,10 @@ class SearchBody extends StatelessWidget {
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemBuilder: (context, index) =>
-                            const CustomSearchItem(),
-                        itemCount: 4,
+                        itemBuilder: (context, index) => CustomSearchItem(
+                          text: item[index].productName!,
+                        ),
+                        itemCount: item.length,
                       )
                     ],
                   ),

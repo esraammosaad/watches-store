@@ -4,14 +4,17 @@ import '../../../../../core/utils/styles.dart';
 class CustomSearchItem extends StatelessWidget {
   const CustomSearchItem({
     super.key,
+    required this.text,
   });
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ListTile(
-          title: Text("omega",
+          title: Text(text,
               style: Styles.fontSize24.copyWith(color: Colors.black)),
           trailing: IconButton(
             onPressed: () {},
