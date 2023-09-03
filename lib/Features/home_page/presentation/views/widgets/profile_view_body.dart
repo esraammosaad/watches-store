@@ -1,8 +1,10 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watsh_store/Features/authentication/presentation/views/sign_in_view.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../../core/utils/widgets/custom_cart_button.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
 import '../../manager/cart_cubit/cart_cubit.dart';
 import '../home_page_view.dart';
@@ -11,6 +13,7 @@ import 'custom_card.dart';
 class ProfileViewBody extends StatelessWidget {
   ProfileViewBody({Key? key}) : super(key: key);
   final user = FirebaseAuth.instance.currentUser;
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,25 +76,129 @@ class ProfileViewBody extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            width: 100,
-                            height: 46,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: const Color(0xB2F51010),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Edit",
-                                style: Styles.fontSize20
-                                    .copyWith(color: Colors.black),
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return SingleChildScrollView(
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(32),
+                                      topLeft: Radius.circular(32),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical:
+                                            MediaQuery.of(context).size.height *
+                                                0.13,
+                                        horizontal:
+                                            MediaQuery.of(context).size.width *
+                                                0.08),
+                                    child: Column(
+                                      children: [
+                                        TextField(
+                                          decoration: InputDecoration(
+                                            hintStyle: Styles.fontSize18
+                                                .copyWith(
+                                                    color: Colors.grey,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                            hintText: user!.email,
+                                            labelStyle: Styles.fontSize20
+                                                .copyWith(color: Colors.grey),
+                                            errorStyle: const TextStyle(
+                                                color: Colors.grey),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                            ),
+                                          ),
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          controller: emailController,
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        CustomCartButton(
+                                          containerColor:
+                                              const Color(0xB2FFFFFF),
+                                          textColor: Colors.black,
+                                          onTap: () async {
+                                            try {
+                                              await user?.updateEmail(
+                                                  emailController.text);
+                                              showAwesomeDialog(
+                                                  context,
+                                                  DialogType.success,
+                                                  "success",
+                                                  "Email updated successfully");
+                                              //showSnackBar(context, "Email updated successfully");
+                                            } catch (e) {
+                                              print(e);
+                                            }
+                                          },
+                                          text: "Update",
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 100,
+                              height: 46,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: const Color(0xB2F51010),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Edit",
+                                  style: Styles.fontSize20
+                                      .copyWith(color: Colors.black),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),

@@ -5,10 +5,10 @@ import 'package:flutter/cupertino.dart';
 abstract class AuthState {}
 
 class AuthInitial extends AuthState {}
+
 class AuthSuccess extends AuthState {}
 
 class AuthFailure extends AuthState {
-  // final String errMessage;
   final String desc;
   final DialogType dialogType;
   final String title;

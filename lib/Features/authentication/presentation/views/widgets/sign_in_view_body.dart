@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watsh_store/Features/authentication/presentation/manager/auth_cubit/auth_state.dart';
+import '../../../../../core/utils/styles.dart';
 import '../../../../home_page/presentation/views/home_page_view.dart';
 import '../../manager/auth_cubit/auth_cubit.dart';
 import 'custom_sign_in_form.dart';

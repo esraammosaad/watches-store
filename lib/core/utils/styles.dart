@@ -1,5 +1,5 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:watsh_store/Features/home_page/presentation/views/cart_view.dart';
 import 'package:watsh_store/core/utils/widgets/custom_cart_button.dart';
 
 abstract class Styles {
@@ -56,32 +56,31 @@ BoxDecoration buildBoxDecorationColor() {
 }
 
 Future<void> buildShowModalBottomSheet(
-    {required BuildContext context, required String text, required String buttonText, required VoidCallback onTap}) {
+    {required BuildContext context,
+    required String text,
+    required String buttonText,
+    required VoidCallback onTap}) {
   return showModalBottomSheet<void>(
-    shape: const OutlineInputBorder(borderRadius:BorderRadius.only(
+    shape: const OutlineInputBorder(
+        borderRadius: BorderRadius.only(
       topRight: Radius.circular(32),
       topLeft: Radius.circular(32),
-
-    ) ),
+    )),
     context: context,
-
     builder: (BuildContext context) {
       return SingleChildScrollView(
         child: Container(
-          
-
-            decoration: const BoxDecoration(
-              color: Colors.black,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(32),
-                  topLeft: Radius.circular(32),
-
-                ),
-
+          decoration: const BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(32),
+              topLeft: Radius.circular(32),
             ),
-
+          ),
           child: Padding(
-            padding:  EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height*0.13, horizontal: MediaQuery.of(context).size.width*0.08),
+            padding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * 0.13,
+                horizontal: MediaQuery.of(context).size.width * 0.08),
             child: Column(
               children: [
                 Image.asset("assets/icons/mdi_success2.png"),
@@ -90,7 +89,8 @@ Future<void> buildShowModalBottomSheet(
                 ),
                 Text(
                   text,
-                  style: Styles.fontSize24,textAlign: TextAlign.center,
+                  style: Styles.fontSize24,
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 50,
@@ -108,4 +108,19 @@ Future<void> buildShowModalBottomSheet(
       );
     },
   );
+}
+
+void showAwesomeDialog(
+  BuildContext context,
+  DialogType dialogType,
+  String title,
+  String desc,
+) {
+  AwesomeDialog(
+    context: context,
+    dialogType: dialogType,
+    animType: AnimType.rightSlide,
+    title: title,
+    desc: desc,
+  ).show();
 }
