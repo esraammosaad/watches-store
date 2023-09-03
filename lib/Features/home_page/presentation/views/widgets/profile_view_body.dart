@@ -15,6 +15,8 @@ class ProfileViewBody extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser;
   TextEditingController emailController = TextEditingController();
 
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -159,6 +161,7 @@ class ProfileViewBody extends StatelessWidget {
                                             try {
                                               await user?.updateEmail(
                                                   emailController.text);
+                                              FirebaseAuth.instance.currentUser!.sendEmailVerification();
                                               showAwesomeDialog(
                                                   context,
                                                   DialogType.success,
