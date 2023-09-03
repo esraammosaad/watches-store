@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../../core/utils/styles.dart';
 import '../../manager/favorite_cubit/favorite_cubit.dart';
 import '../item_details_view.dart';
@@ -36,10 +35,15 @@ class FavoriteItem extends StatelessWidget {
                 shadowColor: const Color(0x80000000),
                 color: const Color(0xB2FFFFFF),
                 shape: const OutlineInputBorder(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(32),
-                        bottomRight: Radius.circular(32)),
-                    borderSide: BorderSide(color: Color(0x80000000), width: 1)),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(32),
+                    bottomRight: Radius.circular(32),
+                  ),
+                  borderSide: BorderSide(
+                    color: Color(0x80000000),
+                    width: 1,
+                  ),
+                ),
                 child: ListTile(
                   contentPadding: const EdgeInsets.only(
                       left: 34, top: 13, bottom: 13, right: 8),
@@ -54,19 +58,18 @@ class FavoriteItem extends StatelessWidget {
                         fontWeight: FontWeight.w600),
                   ),
                   trailing: IconButton(
-                      onPressed: () {
-                        BlocProvider.of<FavoriteCubit>(context)
-                            .getFavoriteItems(
-                                item: BlocProvider.of<FavoriteCubit>(context)
-                                    .favoriteItems[index]);
-
-
-                      },
-                      icon: const Icon(
-                        FontAwesomeIcons.solidHeart,
-                        color: Colors.red,
-                        size: 30,
-                      )),
+                    onPressed: () {
+                      BlocProvider.of<FavoriteCubit>(context).getFavoriteItems(
+                        item: BlocProvider.of<FavoriteCubit>(context)
+                            .favoriteItems[index],
+                      );
+                    },
+                    icon: const Icon(
+                      FontAwesomeIcons.solidHeart,
+                      color: Colors.red,
+                      size: 30,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -74,9 +77,10 @@ class FavoriteItem extends StatelessWidget {
               radius: MediaQuery.of(context).size.width * 0.16,
               backgroundColor: const Color(0xB2F9F0F0),
               backgroundImage: AssetImage(
-                  BlocProvider.of<FavoriteCubit>(context)
-                      .favoriteItems[index]
-                      .image),
+                BlocProvider.of<FavoriteCubit>(context)
+                    .favoriteItems[index]
+                    .image,
+              ),
             )
           ],
         ),

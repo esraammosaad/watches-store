@@ -5,14 +5,17 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     this.onTap,
+    this.onChanged,
   });
 
   final void Function()? onTap;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       onTap: onTap,
+      onChanged: onChanged,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),

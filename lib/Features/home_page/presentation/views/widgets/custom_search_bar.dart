@@ -6,10 +6,12 @@ class CustomSearchBar extends StatelessWidget {
     super.key,
     this.onTap,
     this.enabled,
+    this.onChanged,
   });
 
   final void Function()? onTap;
   final bool? enabled;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class CustomSearchBar extends StatelessWidget {
           child: SizedBox(
             height: 45,
             child: CustomTextField(
+              onChanged: onChanged,
               onTap: onTap,
             ),
           ),

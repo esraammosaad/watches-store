@@ -15,8 +15,6 @@ class ProfileViewBody extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser;
   TextEditingController emailController = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -161,15 +159,20 @@ class ProfileViewBody extends StatelessWidget {
                                             try {
                                               await user?.updateEmail(
                                                   emailController.text);
-                                              FirebaseAuth.instance.currentUser!.sendEmailVerification();
+                                              FirebaseAuth.instance.currentUser!
+                                                  .sendEmailVerification();
                                               showAwesomeDialog(
                                                   context,
                                                   DialogType.success,
-                                                  "success",
+                                                  "Success",
                                                   "Email updated successfully");
                                               //showSnackBar(context, "Email updated successfully");
                                             } catch (e) {
-                                              print(e);
+                                              showAwesomeDialog(
+                                                  context,
+                                                  DialogType.info,
+                                                  "Info",
+                                                  "This operation is sensitive, Please log in again before retrying this operation");
                                             }
                                           },
                                           text: "Update",

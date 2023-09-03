@@ -1,17 +1,86 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watsh_store/core/utils/styles.dart';
 import '../../../../../core/utils/widgets/custom_title.dart';
-import '../../manager/home_cubit/home_cubit.dart';
+import '../../../data/models/brands_model.dart';
+import '../item_details_view.dart';
 import 'custom_search_bar.dart';
 import 'custom_search_item.dart';
 
-class SearchBody extends StatelessWidget {
+class SearchBody extends StatefulWidget {
   const SearchBody({Key? key}) : super(key: key);
 
   @override
+  State<SearchBody> createState() => _SearchBodyState();
+}
+
+class _SearchBodyState extends State<SearchBody> {
+  List<ProductsModel> items = [
+    ProductsModel(
+      image: 'assets/images/omega.png',
+      description:
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Omega',
+      price: 500,
+      id: 0,
+      productBrand: 'Omega',
+      isFavorite: false,
+    ),
+    ProductsModel(
+      image: 'assets/images/piaget.png',
+      description:
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Piaget',
+      price: 500,
+      id: 1,
+      productBrand: 'Jaeger',
+      isFavorite: false,
+    ),
+    ProductsModel(
+      image: 'assets/images/meister.png',
+      description:
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'meister',
+      price: 500,
+      id: 2,
+      productBrand: 'Omega',
+      isFavorite: false,
+    ),
+    ProductsModel(
+      image: 'assets/images/piaget.png',
+      description:
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+      productName: 'Piaget',
+      price: 500,
+      id: 3,
+      productBrand: 'TAG',
+      isFavorite: false,
+    ),
+  ];
+  List<ProductsModel> searchItems = [];
+
+  @override
+  void initState() {
+    searchItems = items;
+    super.initState();
+  }
+
+  void updateItems(value) {
+    List<ProductsModel> results = [];
+    if (value.isEmpty) {
+      results = items;
+    } else {
+      results = items
+          .where((element) =>
+              element.productName!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      searchItems = results;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final item = BlocProvider.of<HomeCubit>(context).productItems;
     return SafeArea(
       child: Container(
         decoration: buildBoxDecorationColor(),
@@ -27,9 +96,11 @@ class SearchBody extends StatelessWidget {
                 },
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 20, right: 8, left: 8),
-              child: CustomSearchBar(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20, right: 8, left: 8),
+              child: CustomSearchBar(
+                onChanged: (value) => updateItems(value),
+              ),
             ),
             Expanded(
               child: Container(
@@ -67,10 +138,27 @@ class SearchBody extends StatelessWidget {
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemBuilder: (context, index) => CustomSearchItem(
-                          text: item[index].productName!,
+                        itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ItemDetailsView(
+                                  item: searchItems[index],
+                                ),
+                              ),
+                            );
+                          },
+                          child: CustomSearchItem(
+                            text: searchItems[index].productName!,
+                            onPressed: () {
+                              setState(() {
+                                searchItems.remove(searchItems[index]);
+                              });
+                            },
+                          ),
                         ),
-                        itemCount: item.length,
+                        itemCount: searchItems.length,
                       )
                     ],
                   ),

@@ -5,9 +5,11 @@ class CustomSearchItem extends StatelessWidget {
   const CustomSearchItem({
     super.key,
     required this.text,
+    this.onPressed,
   });
 
   final String text;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CustomSearchItem extends StatelessWidget {
           title: Text(text,
               style: Styles.fontSize24.copyWith(color: Colors.black)),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: onPressed,
             icon: Image.asset("assets/icons/delete.png"),
           ),
         ),

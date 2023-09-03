@@ -1,18 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
-
 import '../../../data/models/brands_model.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
+
   List<ProductsModel> productItems = [
     ProductsModel(
       image: 'assets/images/omega.png',
       description:
-      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
       productName: 'Omega',
       price: 500,
       id: 0,
@@ -22,7 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
     ProductsModel(
       image: 'assets/images/piaget.png',
       description:
-      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
       productName: 'Piaget',
       price: 500,
       id: 1,
@@ -32,7 +32,7 @@ class HomeCubit extends Cubit<HomeState> {
     ProductsModel(
       image: 'assets/images/meister.png',
       description:
-      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
       productName: 'meister',
       price: 500,
       id: 2,
@@ -42,7 +42,7 @@ class HomeCubit extends Cubit<HomeState> {
     ProductsModel(
       image: 'assets/images/piaget.png',
       description:
-      "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
+          "Quam nostrum nihil consequatur autem enim. Excepturi architecto quis. Deserunt tenetur accusamus voluptatum fuga enim. Quia modi in est ea dolor voluptatem provident repellat. ",
       productName: 'Piaget',
       price: 500,
       id: 3,
@@ -73,5 +73,4 @@ class HomeCubit extends Cubit<HomeState> {
   ];
 
   String? brandName;
-
 }
