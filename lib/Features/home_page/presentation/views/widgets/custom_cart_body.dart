@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../data/models/brands_model.dart';
 import '../../manager/cart_cubit/cart_cubit.dart';
 
 class CustomCartBody extends StatefulWidget {
-  CustomCartBody({super.key, required this.index});
+  CustomCartBody(
+      {super.key,
+      required this.index,
+      required this.quantity,
+      required this.product});
 
-  int index;
+  final int index;
+  final ProductsModel product;
+  int quantity;
 
   @override
   State<CustomCartBody> createState() => _CustomCartBodyState();
 }
 
 class _CustomCartBodyState extends State<CustomCartBody> {
-  int items = 1;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,9 +55,7 @@ class _CustomCartBodyState extends State<CustomCartBody> {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Image.asset(
                 //fit: BoxFit.fill,
-                BlocProvider.of<CartCubit>(context)
-                    .cartItems[widget.index]
-                    .image,
+                widget.product.image,
               ),
             ),
             Expanded(
@@ -63,9 +66,7 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      BlocProvider.of<CartCubit>(context)
-                          .cartItems[widget.index]
-                          .description!,
+                      widget.product.description!,
                       style: Styles.fontSize20.copyWith(
                         color: Colors.black,
                       ),
@@ -87,14 +88,11 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 37),
                           child: Text(
-                            BlocProvider.of<CartCubit>(context)
-                                    .cartItems[widget.index]
-                                    .price
-                                    .toString() +
-                                r'$',
+                            widget.product.price.toString() + r'$',
                             style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -117,12 +115,12 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          if (items >= 1) {
-                            items--;
-                            setState(
-                              () {},
-                            );
-                          }
+                          widget.quantity--;
+                          BlocProvider.of<CartCubit>(context)
+                              .removeItem(item: widget.product);
+                          setState(
+                            () {},
+                          );
                         },
                         child: Text(
                           "-",
@@ -132,14 +130,16 @@ class _CustomCartBodyState extends State<CustomCartBody> {
                         ),
                       ),
                       Text(
-                        "$items",
+                        widget.quantity.toString(),
                         style: Styles.fontSize20.copyWith(
                           color: Colors.white,
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          items++;
+                          widget.quantity++;
+                          BlocProvider.of<CartCubit>(context)
+                              .getCartItems(item: widget.product);
                           setState(
                             () {},
                           );

@@ -36,78 +36,101 @@ class CartBody extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemBuilder: (context, index) => CustomCartBody(index: index),
-                itemCount: BlocProvider.of<CartCubit>(context).cartItems.length,
+                itemBuilder: (context, index) => CustomCartBody(
+                  product: BlocProvider.of<CartCubit>(context)
+                      .itemQuantity(
+                          BlocProvider.of<CartCubit>(context).cartItems)
+                      .keys
+                      .elementAt(index),
+                  index: index,
+                  quantity: BlocProvider.of<CartCubit>(context)
+                      .itemQuantity(
+                          BlocProvider.of<CartCubit>(context).cartItems)
+                      .values
+                      .elementAt(index),
+                ),
+                itemCount: BlocProvider.of<CartCubit>(context)
+                    .itemQuantity(BlocProvider.of<CartCubit>(context).cartItems)
+                    .keys
+                    .length,
               ),
             ),
-            Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(32),
-                  topLeft: Radius.circular(32),
-                ),
-                color: Colors.black,
-              ),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
+            BlocProvider.of<CartCubit>(context).totalPrice != 0
+                ? Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(32),
+                        topLeft: Radius.circular(32),
+                      ),
+                      color: Colors.black,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 18,
+                      ),
                       child: Column(
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 14),
+                            child: Column(
+                              children: [
+                                CustomPriceRow(
+                                  text: "Item total",
+                                  price: BlocProvider.of<CartCubit>(context)
+                                          .totalPrice
+                                          .toString() +
+                                      r'$',
+                                  style: Styles.fontSize20.copyWith(
+                                    color: Colors.white.withOpacity(0.7),
+                                  ),
+                                ),
+                                CustomPriceRow(
+                                  text: "Delivery Charge",
+                                  price: "50\$",
+                                  style: Styles.fontSize20.copyWith(
+                                    color: Colors.white.withOpacity(0.7),
+                                  ),
+                                ),
+                                CustomPriceRow(
+                                  text: "Tax",
+                                  price: "40\$",
+                                  style: Styles.fontSize20.copyWith(
+                                    color: Colors.white.withOpacity(0.7),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           CustomPriceRow(
-                              text: "Item total",
-                              price: BlocProvider.of<CartCubit>(context)
-                                      .totalPrice
-                                      .toString() +
-                                  r'$',
-                              style: Styles.fontSize20.copyWith(
-                                color: Colors.white.withOpacity(0.7),
-                              )),
-                          CustomPriceRow(
-                              text: "Delivery Charge",
-                              price: "50\$",
-                              style: Styles.fontSize20.copyWith(
-                                color: Colors.white.withOpacity(0.7),
-                              )),
-                          CustomPriceRow(
-                              text: "Tax",
-                              price: "40\$",
-                              style: Styles.fontSize20.copyWith(
-                                color: Colors.white.withOpacity(0.7),
-                              )),
+                            text: "total",
+                            price:
+                                '${BlocProvider.of<CartCubit>(context).totalPrice + 40 + 50}',
+                            style: Styles.fontSize24.copyWith(
+                              color: Colors.white.withOpacity(0.7),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          CustomCartButton(
+                            containerColor: const Color(0xB2FFFFFF),
+                            textColor: Colors.black,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const CheckoutView(),
+                                ),
+                              );
+                            },
+                            text: "Checkout",
+                          )
                         ],
                       ),
                     ),
-                    CustomPriceRow(
-                        text: "total",
-                        price:
-                            '${BlocProvider.of<CartCubit>(context).totalPrice + 40 + 50}',
-                        style: Styles.fontSize24.copyWith(
-                          color: Colors.white.withOpacity(0.7),
-                        )),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    CustomCartButton(
-                      containerColor: const Color(0xB2FFFFFF),
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CheckoutView(),
-                          ),
-                        );
-                      },
-                      text: "Checkout",
-                    )
-                  ],
-                ),
-              ),
-            )
+                  )
+                : Container()
           ],
         ),
       ),

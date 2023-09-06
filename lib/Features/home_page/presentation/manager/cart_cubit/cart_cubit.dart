@@ -9,13 +9,36 @@ class CartCubit extends Cubit<CartState> {
   List<ProductsModel> cartItems = [];
   double totalPrice = 0;
 
+  Map itemQuantity(item) {
+    var quantity = {};
+    for (var element in cartItems) {
+      if (!quantity.containsKey(element)) {
+        quantity[element] = 1;
+      } else {
+        quantity[element] += 1;
+      }
+    }
+    return quantity;
+  }
+
+  void removeItem({required ProductsModel item}) {
+    try {
+      if (cartItems.remove(item)) {
+        totalPrice -= item.price!;
+        if (totalPrice < 0) {
+          totalPrice = 0;
+        }
+      }
+      emit(CartSuccess());
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void getCartItems({required ProductsModel item}) {
     emit(CartLoading());
-
-    if (!cartItems.contains(item)) {
-      cartItems.add(item);
-      totalPrice = totalPrice + item.price!;
-    }
+    cartItems.add(item);
+    totalPrice = totalPrice + item.price!;
     emit(CartSuccess());
   }
 

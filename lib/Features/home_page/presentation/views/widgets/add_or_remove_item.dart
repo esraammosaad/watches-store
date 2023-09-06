@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watsh_store/Features/home_page/presentation/manager/cart_cubit/cart_cubit.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/brands_model.dart';
 
@@ -57,8 +59,10 @@ class _AddOrRemoveItemState extends State<AddOrRemoveItem> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    if (numberOfItems >= 1) {
+                    if (numberOfItems > 1) {
                       numberOfItems--;
+                      BlocProvider.of<CartCubit>(context)
+                          .removeItem(item: widget.item);
                     }
                     setState(
                       () {},
@@ -80,6 +84,8 @@ class _AddOrRemoveItemState extends State<AddOrRemoveItem> {
                 GestureDetector(
                   onTap: () {
                     numberOfItems++;
+                    BlocProvider.of<CartCubit>(context)
+                        .getCartItems(item: widget.item);
                     setState(
                       () {},
                     );
