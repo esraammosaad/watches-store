@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import '../styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField(
-      {super.key,
-      required this.text,
-      this.imgPath,
-      this.keyboardType,
-      required this.obscureText,
-      required this.onChanged,
-      required this.controller,
-      required this.textInputAction,  });
+  CustomTextFormField({
+    super.key,
+    required this.text,
+    this.imgPath,
+    this.keyboardType,
+    required this.obscureText,
+    required this.onChanged,
+    required this.controller,
+    required this.textInputAction,
+    required this.validator,
+  });
 
   final String text;
   final String? imgPath;
   final TextInputAction? textInputAction;
-
+  final String? Function(String?)? validator;
 
   final bool obscureText;
   final TextInputType? keyboardType;
@@ -31,12 +33,7 @@ class CustomTextFormField extends StatelessWidget {
         controller: controller,
         onChanged: onChanged,
         textInputAction: textInputAction,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Please enter a valid value';
-          }
-          return null;
-        },
+        validator: validator,
         obscureText: obscureText,
         keyboardType: keyboardType,
         cursorColor: Colors.white,

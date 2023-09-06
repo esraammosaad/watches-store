@@ -53,6 +53,12 @@ class _SignUpFormState extends State<SignUpForm> {
                   child: Column(
                     children: [
                       CustomTextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Email address must not be empty';
+                          }
+                          return null;
+                        },
                         controller: emailController,
                         text: "Email address",
                         textInputAction: TextInputAction.next,
@@ -64,6 +70,12 @@ class _SignUpFormState extends State<SignUpForm> {
                         height: 16,
                       ),
                       CustomTextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Name must not be empty';
+                          }
+                          return null;
+                        },
                         controller: userNameController,
                         text: "User Name",
                         textInputAction: TextInputAction.next,
@@ -74,6 +86,12 @@ class _SignUpFormState extends State<SignUpForm> {
                         height: 16,
                       ),
                       CustomTextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Password must not be empty';
+                          }
+                          return null;
+                        },
                         controller: passwordController,
                         text: "Password",
                         textInputAction: TextInputAction.next,
@@ -85,6 +103,16 @@ class _SignUpFormState extends State<SignUpForm> {
                         height: 16,
                       ),
                       CustomTextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter re-password';
+                          }
+                          if (passwordController.text !=
+                              confirmPasswordController.text) {
+                            return "Please make sure your passwords match";
+                          }
+                          return null;
+                        },
                         controller: confirmPasswordController,
                         text: "Confirm Password",
                         textInputAction: TextInputAction.done,
@@ -105,7 +133,9 @@ class _SignUpFormState extends State<SignUpForm> {
                               password: passwordController.text,
                             );
                           }
-                          setState(() {});
+                          setState(
+                            () {},
+                          );
                         },
                       )
                     ],

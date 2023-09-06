@@ -7,6 +7,7 @@ import '../../../../../core/utils/widgets/custom_text_form_field.dart';
 import '../../manager/auth_cubit/auth_cubit.dart';
 import 'custom_different_ways_to_sign_in_row.dart';
 import 'custom_new_user_row.dart';
+
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
 
@@ -15,11 +16,11 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  AutovalidateMode autoValidateMode=AutovalidateMode.disabled;
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -39,6 +40,12 @@ class _SignInFormState extends State<SignInForm> {
                 child: Column(
                   children: [
                     CustomTextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter a valid Email';
+                        }
+                        return null;
+                      },
                       imgPath: "assets/images/black-male-user-symbol.png",
                       text: "Email",
                       obscureText: false,
@@ -51,13 +58,20 @@ class _SignInFormState extends State<SignInForm> {
                       height: 24,
                     ),
                     CustomTextFormField(
-                        controller: passwordController,
-                        imgPath: "assets/images/key.png",
-                        text: "Password",
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: true,
-                        onChanged: (value) {}),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter a valid Password';
+                        }
+                        return null;
+                      },
+                      controller: passwordController,
+                      imgPath: "assets/images/key.png",
+                      text: "Password",
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      onChanged: (value) {},
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: Row(
@@ -71,7 +85,8 @@ class _SignInFormState extends State<SignInForm> {
                             onTap: () async {
                               await FirebaseAuth.instance
                                   .sendPasswordResetEmail(
-                                  email: emailController.text);
+                                email: emailController.text,
+                              );
                             },
                           ),
                         ],
@@ -83,13 +98,14 @@ class _SignInFormState extends State<SignInForm> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           BlocProvider.of<AuthCubit>(context).loginUser(
-                              email: emailController.text,
-                              password: passwordController.text);
+                            email: emailController.text,
+                            password: passwordController.text,
+                          );
                         }
-                        autoValidateMode=AutovalidateMode.always;
-                        setState(() {
-
-                        });
+                        autoValidateMode = AutovalidateMode.always;
+                        setState(
+                          () {},
+                        );
                       },
                     )
                   ],
@@ -104,6 +120,3 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 }
-
-
-
