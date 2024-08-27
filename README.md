@@ -1,16 +1,7 @@
 # watsh_store
 
-A new Flutter project.
+Watches Store is a Flutter application designed to provide a seamless and user-friendly shopping experience for watches. The app uses Firebase for authentication, data storage, and real-time updates, and Cubit for state management. The goal of this application is to offer an intuitive interface for users to browse, purchase, and manage their watch collections.
 
-## Getting Started
+# Demo of the application 🎥
+https://github.com/user-attachments/assets/2b557f64-5b3f-4474-8af2-ecc950064c76
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
